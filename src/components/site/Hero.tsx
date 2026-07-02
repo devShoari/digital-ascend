@@ -407,7 +407,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-electric opacity-75" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-electric" />
             </span>
-            استودیوی محصول دیجیتال · فعال در ۲۰۲۶
+           مرکز توسعه و طراحی وب ایران
           </motion.div>
 
           {/* Headline with per-line stagger */}

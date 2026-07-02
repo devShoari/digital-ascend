@@ -1,4 +1,6 @@
 import { SectionHead } from "./Process";
+import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 const tech = [
   "React", "Next.js", "TypeScript", "Node",
@@ -7,6 +9,11 @@ const tech = [
 ];
 
 export function Tech() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   // distribute on two orbits
   const inner = tech.slice(0, 5);
   const outer = tech.slice(5);
@@ -50,9 +57,9 @@ export function Tech() {
             </div>
 
             {/* inner orbit */}
-            <Orbit items={inner} radius={32} duration={26} />
+            {isClient && <Orbit items={inner} radius={32} duration={26} />}
             {/* outer orbit */}
-            <Orbit items={outer} radius={46} duration={42} reverse />
+            {isClient && <Orbit items={outer} radius={46} duration={42} reverse />}
           </div>
         </div>
       </div>
@@ -68,17 +75,27 @@ function Orbit({ items, radius, duration, reverse }: { items: string[]; radius: 
     >
       {items.map((t, i) => {
         const angle = (i / items.length) * Math.PI * 2;
-        const x = 50 + Math.cos(angle) * radius;
-        const y = 50 + Math.sin(angle) * radius;
+        const x = Math.round((50 + Math.cos(angle) * radius) * 100) / 100;
+        const y = Math.round((50 + Math.sin(angle) * radius) * 100) / 100;
         return (
           <div
             key={t}
             className="absolute -translate-x-1/2 -translate-y-1/2"
-            style={{ left: `${x}%`, top: `${y}%`, animation: `counter ${duration}s linear infinite${reverse ? " reverse" : ""}` }}
+            style={{ left: `${x}%`, top: `${y}%` }}
+            suppressHydrationWarning
           >
-            <div className="glass-strong rounded-full px-3.5 py-1.5 text-xs font-mono whitespace-nowrap shadow-elevated">
+            <motion.div
+              className="glass-strong rounded-full px-3.5 py-1.5 text-xs font-mono whitespace-nowrap shadow-elevated"
+              animate={{ rotate: reverse ? -360 : 360 }}
+              transition={{
+                duration,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              style={{ rotate: 0 }}
+            >
               {t}
-            </div>
+            </motion.div>
           </div>
         );
       })}
