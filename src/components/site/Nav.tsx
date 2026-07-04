@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowLeft, Menu } from "lucide-react";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { ThemeToggle } from "@/components/site/ThemeToggle";
 
 const links = [
   { href: "#services", label: "خدمات" },
@@ -96,6 +97,7 @@ export function Nav() {
 
         {/* Right Side */}
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           {/* CTA */}
           <motion.a
             whileHover={{ scale: 1.04 }}
