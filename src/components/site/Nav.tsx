@@ -10,6 +10,7 @@ const links = [
   { href: "#services", label: "خدمات" },
   { href: "#process", label: "فرآیند" },
   { href: "#projects", label: "پروژه‌ها" },
+  { href: "/experts", label: "متخصصین ما" },
   { href: "#tech", label: "تکنولوژی" },
   { href: "#education", label: "آموزش" },
 ];
