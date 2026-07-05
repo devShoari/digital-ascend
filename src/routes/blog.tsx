@@ -7,6 +7,8 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { posts } from "@/lib/blog-data";
 
+const MotionLink = motion.create(Link);
+
 export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
@@ -116,8 +118,9 @@ function BlogPage() {
       {featured && cat === "همه" && !query && (
         <section className="px-6 pb-16">
           <div className="mx-auto max-w-6xl">
-            <motion.a
-              href="#"
+            <MotionLink
+              to="/blog/$slug"
+              params={{ slug: featured.slug }}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -149,7 +152,7 @@ function BlogPage() {
                   <div className="absolute inset-6 rounded-xl border border-white/30 backdrop-blur-sm" />
                 </div>
               </div>
-            </motion.a>
+            </MotionLink>
           </div>
         </section>
       )}
@@ -166,9 +169,10 @@ function BlogPage() {
               {filtered
                 .filter((p) => !(p.featured && cat === "همه" && !query))
                 .map((post, i) => (
-                  <motion.a
-                    key={post.title}
-                    href="#"
+                  <MotionLink
+                    key={post.slug}
+                    to="/blog/$slug"
+                    params={{ slug: post.slug }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -192,7 +196,7 @@ function BlogPage() {
                         <span className="inline-flex items-center gap-1.5"><Clock className="h-3 w-3" />{post.readTime}</span>
                       </div>
                     </div>
-                  </motion.a>
+                  </MotionLink>
                 ))}
             </div>
           )}
