@@ -22,19 +22,23 @@ export function Education() {
                 با ظرفیت محدود.
               </h2>
               <p className="mt-5 max-w-xl text-muted-foreground leading-8 md:text-lg">
-                ما در هر ماه فقط حدود <span className="num text-foreground font-semibold">۵۰ نفر</span> را
-                در دوره‌های حرفه‌ای می‌پذیریم. هدف، یادگیری عمیق و عملی است — نه ثبت‌نام انبوه.
-                هر دانش‌جو از منتورینگ مستقیم اعضای استودیو بهره می‌برد.
+                ما در هر ماه فقط حدود{" "}
+                <span className="num text-foreground font-semibold">۵۰ نفر</span> را در دوره‌های
+                حرفه‌ای می‌پذیریم. هدف، یادگیری عمیق و عملی است — نه ثبت‌نام انبوه. هر دانش‌جو از
+                منتورینگ مستقیم اعضای استودیو بهره می‌برد.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
-                  href="#contact"
+                  href="/learn"
                   className="inline-flex items-center gap-2 rounded-full gradient-brand px-6 py-3 text-sm font-semibold text-primary-foreground shadow-glow transition-transform hover:scale-[1.02]"
                 >
                   درخواست عضویت
                 </a>
-                <a href="#" className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-semibold hover:bg-white/10">
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-semibold hover:bg-white/10"
+                >
                   معرفی برنامه آموزشی
                 </a>
               </div>
@@ -65,7 +69,10 @@ export function Education() {
                   "محصول‌گرایی و طراحی تجربه",
                   "AI Engineering عملی",
                 ].map((c) => (
-                  <li key={c} className="flex items-center justify-between rounded-xl glass px-3 py-2.5">
+                  <li
+                    key={c}
+                    className="flex items-center justify-between rounded-xl glass px-3 py-2.5"
+                  >
                     <span>{c}</span>
                     <span className="text-[10px] text-muted-foreground inline-flex items-center gap-1">
                       <Users className="size-3" /> ۵۰ نفر
@@ -74,7 +81,9 @@ export function Education() {
                 ))}
               </ul>
               <div className="mt-6 rounded-xl gradient-brand p-4 text-primary-foreground">
-                <div className="text-[10px] uppercase tracking-[0.25em] opacity-80">ظرفیت باقی‌مانده</div>
+                <div className="text-[10px] uppercase tracking-[0.25em] opacity-80">
+                  ظرفیت باقی‌مانده
+                </div>
                 <div className="mt-1 font-display num text-3xl font-bold">۱۲ / ۵۰</div>
               </div>
             </motion.div>

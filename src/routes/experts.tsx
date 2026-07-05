@@ -106,8 +106,8 @@ function ExpertsPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mx-auto mt-6 max-w-2xl text-lg text-foreground/60"
           >
-            تیمی چندتخصصی از طراحان، مهندسان، متخصصان سئو و استراتژیست‌ها که در کنار هم
-            تجربه‌های دیجیتال ماندگار خلق می‌کنند.
+            تیمی چندتخصصی از طراحان، مهندسان، متخصصان سئو و استراتژیست‌ها که در کنار هم تجربه‌های
+            دیجیتال ماندگار خلق می‌کنند.
           </motion.p>
 
           <motion.div
@@ -190,13 +190,25 @@ function ExpertsPage() {
 
               <div className="relative mt-6 flex items-center justify-between border-t border-white/5 pt-4">
                 <div className="flex gap-2 text-foreground/50">
-                  <a href="#" aria-label="LinkedIn" className="rounded-full p-1.5 transition hover:bg-white/10 hover:text-foreground">
+                  <a
+                    href="#"
+                    aria-label="LinkedIn"
+                    className="rounded-full p-1.5 transition hover:bg-white/10 hover:text-foreground"
+                  >
                     <Linkedin className="h-4 w-4" />
                   </a>
-                  <a href="#" aria-label="GitHub" className="rounded-full p-1.5 transition hover:bg-white/10 hover:text-foreground">
+                  <a
+                    href="#"
+                    aria-label="GitHub"
+                    className="rounded-full p-1.5 transition hover:bg-white/10 hover:text-foreground"
+                  >
                     <Github className="h-4 w-4" />
                   </a>
-                  <a href="#" aria-label="Twitter" className="rounded-full p-1.5 transition hover:bg-white/10 hover:text-foreground">
+                  <a
+                    href="#"
+                    aria-label="Twitter"
+                    className="rounded-full p-1.5 transition hover:bg-white/10 hover:text-foreground"
+                  >
                     <Twitter className="h-4 w-4" />
                   </a>
                 </div>
@@ -219,7 +231,7 @@ function ExpertsPage() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
-              href="#contact"
+              href="/contact"
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20"
             >
               ارسال رزومه

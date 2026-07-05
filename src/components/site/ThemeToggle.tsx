@@ -5,8 +5,15 @@ import { motion } from "motion/react";
 type Theme = "dark" | "light";
 
 function getInitial(): Theme {
-  if (typeof document === "undefined") return "dark";
-  return document.documentElement.classList.contains("dark") ? "dark" : "light";
+  if (typeof document === "undefined") return "light";
+
+  try {
+    const stored = window.localStorage.getItem("theme");
+    if (stored === "dark" || stored === "light") return stored;
+    return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  } catch {
+    return document.documentElement.classList.contains("dark") ? "dark" : "light";
+  }
 }
 
 export function ThemeToggle() {
@@ -31,7 +38,7 @@ export function ThemeToggle() {
       whileTap={{ scale: 0.95 }}
       onClick={toggle}
       aria-label={isDark ? "روشن کردن حالت روز" : "روشن کردن حالت شب"}
-      className="relative flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70 text-foreground backdrop-blur-xl dark:border-white/10 dark:bg-white/5 dark:text-white"
+      className="relative flex h-10 w-10 items-center justify-center rounded-full border border-input bg-background/80 text-foreground shadow-sm backdrop-blur-xl transition hover:bg-background/90 dark:border-white/10 dark:bg-white/10 dark:text-white"
     >
       <motion.span
         key={theme}

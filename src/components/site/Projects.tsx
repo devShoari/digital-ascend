@@ -73,7 +73,9 @@ function ProjectCard({ p, reverse }: { p: (typeof projects)[number]; reverse: bo
       className="group relative grid items-stretch gap-0 overflow-hidden rounded-3xl glass-strong md:grid-cols-2"
     >
       {/* visual */}
-      <div className={`relative order-1 ${reverse ? "md:order-2" : ""} aspect-[5/4] md:aspect-auto`}>
+      <div
+        className={`relative order-1 ${reverse ? "md:order-2" : ""} aspect-[5/4] md:aspect-auto`}
+      >
         <div className={`absolute inset-0 bg-gradient-to-br ${p.accent}`} />
         <div className="absolute inset-0 grid-bg opacity-40" />
         {/* mock browser frame */}
@@ -98,7 +100,9 @@ function ProjectCard({ p, reverse }: { p: (typeof projects)[number]; reverse: bo
       </div>
 
       {/* content */}
-      <div className={`relative order-2 ${reverse ? "md:order-1" : ""} flex flex-col justify-center p-8 md:p-12`}>
+      <div
+        className={`relative order-2 ${reverse ? "md:order-1" : ""} flex flex-col justify-center p-8 md:p-12`}
+      >
         <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">{p.tag}</div>
         <h3 className="mt-2 font-display text-3xl font-bold md:text-4xl">{p.name}</h3>
 
@@ -109,7 +113,10 @@ function ProjectCard({ p, reverse }: { p: (typeof projects)[number]; reverse: bo
 
         <div className="mt-6 flex flex-wrap gap-2">
           {p.tech.map((t) => (
-            <span key={t} className="rounded-full glass px-3 py-1 text-[11px] font-mono text-muted-foreground">
+            <span
+              key={t}
+              className="rounded-full glass px-3 py-1 text-[11px] font-mono text-muted-foreground"
+            >
               {t}
             </span>
           ))}
@@ -124,7 +131,10 @@ function ProjectCard({ p, reverse }: { p: (typeof projects)[number]; reverse: bo
           ))}
         </div>
 
-        <a href="#contact" className="mt-7 inline-flex w-fit items-center gap-2 text-sm font-semibold text-foreground/90 hover:text-foreground">
+        <a
+          href="/contact"
+          className="mt-7 inline-flex w-fit items-center gap-2 text-sm font-semibold text-foreground/90 hover:text-foreground"
+        >
           مشاهده مطالعه موردی
           <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
         </a>

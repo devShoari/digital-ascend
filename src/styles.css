@@ -47,6 +47,10 @@
 
 :root {
   --radius: 0.875rem;
+  color-scheme: light;
+  --surface: oklch(0.99 0.01 270 / 0.95);
+  --surface-strong: oklch(0.98 0.02 275 / 0.98);
+  --surface-border: oklch(0 0 0 / 0.08);
 
   /* === LIGHT (default) === */
   --background: oklch(0.985 0.003 250);
@@ -103,6 +107,11 @@
 }
 
 .dark {
+  color-scheme: dark;
+  --surface: oklch(0.18 0.02 270 / 0.92);
+  --surface-strong: oklch(0.15 0.01 270 / 0.96);
+  --surface-border: oklch(1 0 0 / 0.12);
+
   --background: oklch(0.13 0.012 270);
   --foreground: oklch(0.985 0.003 250);
 
@@ -184,23 +193,23 @@
 @utility glass {
   background: linear-gradient(
     180deg,
-    oklch(1 0 0 / 0.05) 0%,
-    oklch(1 0 0 / 0.02) 100%
+    color-mix(in oklch, var(--background), var(--color-foreground) 12%) 0%,
+    color-mix(in oklch, var(--background), var(--color-foreground) 8%) 100%
   );
   backdrop-filter: blur(20px) saturate(140%);
   -webkit-backdrop-filter: blur(20px) saturate(140%);
-  border: 1px solid oklch(1 0 0 / 0.08);
+  border: 1px solid var(--border);
 }
 
 @utility glass-strong {
   background: linear-gradient(
     180deg,
-    oklch(1 0 0 / 0.08) 0%,
-    oklch(1 0 0 / 0.03) 100%
+    color-mix(in oklch, var(--background), var(--color-foreground) 16%) 0%,
+    color-mix(in oklch, var(--background), var(--color-foreground) 10%) 100%
   );
   backdrop-filter: blur(28px) saturate(160%);
   -webkit-backdrop-filter: blur(28px) saturate(160%);
-  border: 1px solid oklch(1 0 0 / 0.1);
+  border: 1px solid var(--border);
 }
 
 @utility gradient-text {

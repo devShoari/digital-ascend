@@ -113,7 +113,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
-  const themeInit = `(function(){try{var t=localStorage.getItem('theme');if(!t){t='dark';}if(t==='dark'){document.documentElement.classList.add('dark');}document.documentElement.dataset.theme=t;}catch(e){document.documentElement.classList.add('dark');}})();`;
+  const themeInit = `(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';}if(t==='dark'){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='light';}})();`;
   return (
     <html lang="fa" dir="rtl">
       <head>

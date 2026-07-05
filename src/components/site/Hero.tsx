@@ -433,7 +433,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 1.25 }}
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
-            <MagneticButton href="#contact">
+            <MagneticButton href="/contact">
               <Sparkles className="size-4" />
               شروع همکاری
             </MagneticButton>

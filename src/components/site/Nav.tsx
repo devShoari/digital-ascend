@@ -7,12 +7,12 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/site/ThemeToggle";
 
 const links = [
-  { href: "#services", label: "خدمات" },
-  { href: "#process", label: "فرآیند" },
-  { href: "#projects", label: "پروژه‌ها" },
+  { href: "/#services", label: "خدمات" },
+  { href: "/#process", label: "فرآیند" },
+  { href: "/#projects", label: "پروژه‌ها" },
   { href: "/experts", label: "متخصصین ما" },
-  { href: "#tech", label: "تکنولوژی" },
-  { href: "#education", label: "آموزش" },
+  { href: "/#tech", label: "تکنولوژی" },
+  { href: "/#education", label: "آموزش" },
   { href: "/blog", label: "بلاگ" },
 ];
 
@@ -47,7 +47,7 @@ export function Nav() {
         <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/10 via-transparent to-violet-500/10" />
 
         {/* Logo */}
-        <a href="#" className="relative z-10 flex items-center gap-3 px-2">
+        <a href="/" className="relative z-10 flex items-center gap-3 px-2">
           <motion.div
             whileHover={{ rotate: 180 }}
             transition={{ duration: 0.7 }}
@@ -104,7 +104,7 @@ export function Nav() {
           <motion.a
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            href="#contact"
+            href="/contact"
             className="hidden rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 md:inline-flex"
           >
             گفتگو با ما
@@ -158,7 +158,7 @@ export function Nav() {
                 <motion.a
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
-                  href="#contact"
+                  href="/contact"
                   onClick={() => setOpen(false)}
                   className="mt-8 flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 py-4 font-semibold text-white"
                 >
