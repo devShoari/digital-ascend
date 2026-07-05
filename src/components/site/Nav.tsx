@@ -13,6 +13,7 @@ const links = [
   { href: "/experts", label: "متخصصین ما" },
   { href: "#tech", label: "تکنولوژی" },
   { href: "#education", label: "آموزش" },
+  { href: "/blog", label: "بلاگ" },
 ];
 
 export function Nav() {
