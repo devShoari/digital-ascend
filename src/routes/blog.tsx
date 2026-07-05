@@ -1,10 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { ArrowLeft, Search, Calendar, Clock } from "lucide-react";
 
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
+import { posts } from "@/lib/blog-data";
 
 export const Route = createFileRoute("/blog")({
   head: () => ({
@@ -25,77 +26,6 @@ export const Route = createFileRoute("/blog")({
   }),
   component: BlogPage,
 });
-
-type Post = {
-  title: string;
-  excerpt: string;
-  category: "طراحی" | "مهندسی" | "سئو و رشد" | "استراتژی" | "خلاقیت";
-  readTime: string;
-  date: string;
-  gradient: string;
-  featured?: boolean;
-};
-
-const posts: Post[] = [
-  {
-    title: "طراحی رابط‌های سه‌بعدی با WebGL؛ از ایده تا ۶۰ فریم بر ثانیه",
-    excerpt:
-      "چطور با Three.js و React Three Fiber تجربه‌های تعاملی می‌سازیم که در موبایل هم روان اجرا می‌شوند — از بهینه‌سازی shaderها تا مدیریت حافظه.",
-    category: "مهندسی",
-    readTime: "۱۲ دقیقه",
-    date: "۱۴ تیر ۱۴۰۵",
-    gradient: "from-cyan-400 via-violet-500 to-fuchsia-500",
-    featured: true,
-  },
-  {
-    title: "Core Web Vitals در سال ۲۰۲۶؛ راهنمای عملی برای تیم‌های محصول",
-    excerpt: "معیارهای جدید گوگل، ابزارهای اندازه‌گیری و تکنیک‌هایی که در پروژه‌های واقعی جواب داده‌اند.",
-    category: "سئو و رشد",
-    readTime: "۹ دقیقه",
-    date: "۷ تیر ۱۴۰۵",
-    gradient: "from-amber-400 to-rose-500",
-  },
-  {
-    title: "Design System به مثابه محصول؛ چرا کتابخانه‌ی UI شما شکست می‌خورد",
-    excerpt: "درس‌هایی از ساخت دیزاین‌سیستم برای تیم‌های چند-محصولی و اشتباهات رایجی که باید از آن‌ها اجتناب کنید.",
-    category: "طراحی",
-    readTime: "۸ دقیقه",
-    date: "۳۰ خرداد ۱۴۰۵",
-    gradient: "from-fuchsia-400 to-cyan-400",
-  },
-  {
-    title: "معماری Edge؛ چرا Cloudflare Workers آینده‌ی بک‌اند است",
-    excerpt: "مقایسه‌ی serverless سنتی با edge runtime و راهنمای مهاجرت پروژه‌های واقعی.",
-    category: "مهندسی",
-    readTime: "۱۱ دقیقه",
-    date: "۲۲ خرداد ۱۴۰۵",
-    gradient: "from-emerald-400 to-cyan-500",
-  },
-  {
-    title: "روایت برند در محصولات SaaS؛ فراتر از لوگو و رنگ",
-    excerpt: "چطور صدای برند را در جزئیات تجربه کاربری، میکروکپی و انیمیشن‌ها تزریق کنیم.",
-    category: "خلاقیت",
-    readTime: "۷ دقیقه",
-    date: "۱۵ خرداد ۱۴۰۵",
-    gradient: "from-pink-400 to-orange-400",
-  },
-  {
-    title: "از MVP تا Product-Market Fit؛ چارچوبی که در ۱۲ استارتاپ آزموده‌ایم",
-    excerpt: "متریک‌ها، آزمون‌ها و تصمیم‌های سختی که مسیر یک محصول را تعیین می‌کنند.",
-    category: "استراتژی",
-    readTime: "۱۴ دقیقه",
-    date: "۸ خرداد ۱۴۰۵",
-    gradient: "from-sky-400 to-blue-600",
-  },
-  {
-    title: "انیمیشن‌های اسکرول با GSAP و Lenis؛ راهنمای جامع",
-    excerpt: "الگوهایی که در پروژه‌های واقعی برای ساخت تجربه‌های اسکرول سینمایی استفاده می‌کنیم.",
-    category: "طراحی",
-    readTime: "۱۰ دقیقه",
-    date: "۱ خرداد ۱۴۰۵",
-    gradient: "from-violet-500 to-indigo-500",
-  },
-];
 
 const categories = ["همه", "طراحی", "مهندسی", "سئو و رشد", "استراتژی", "خلاقیت"] as const;
 
