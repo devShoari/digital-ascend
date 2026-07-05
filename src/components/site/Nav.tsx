@@ -11,6 +11,7 @@ const links = [
   { href: "/#process", label: "فرآیند" },
   { href: "/#projects", label: "پروژه‌ها" },
   { href: "/experts", label: "متخصصین ما" },
+  { href: "/about", label: "درباره" },
   { href: "/#tech", label: "تکنولوژی" },
   { href: "/#education", label: "آموزش" },
   { href: "/blog", label: "بلاگ" },
@@ -33,7 +34,7 @@ export function Nav() {
   return (
     <header className="fixed inset-x-0 top-5 z-50 flex justify-center px-4">
       <motion.nav
-        initial={{ y: -40, opacity: 0 }}
+        initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{
           duration: 0.7,
