@@ -7,8 +7,6 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { posts } from "@/lib/blog-data";
 
-const MotionLink = motion.create(Link);
-
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
@@ -118,15 +116,17 @@ function BlogPage() {
       {featured && cat === "همه" && !query && (
         <section className="px-6 pb-16">
           <div className="mx-auto max-w-6xl">
-            <MotionLink
-              to="/blog/$slug"
-              params={{ slug: featured.slug }}
+            <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="group relative block overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl"
             >
+              <Link
+                to="/blog/$slug"
+                params={{ slug: featured.slug }}
+                className="group relative block overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl"
+              >
               <div className={`absolute inset-0 bg-gradient-to-br ${featured.gradient} opacity-20 transition-opacity group-hover:opacity-30`} />
               <div className="relative grid gap-8 p-8 md:grid-cols-[1.2fr_1fr] md:p-12">
                 <div>
@@ -152,7 +152,8 @@ function BlogPage() {
                   <div className="absolute inset-6 rounded-xl border border-white/30 backdrop-blur-sm" />
                 </div>
               </div>
-            </MotionLink>
+              </Link>
+            </motion.div>
           </div>
         </section>
       )}
@@ -169,16 +170,18 @@ function BlogPage() {
               {filtered
                 .filter((p) => !(p.featured && cat === "همه" && !query))
                 .map((post, i) => (
-                  <MotionLink
+                  <motion.div
                     key={post.slug}
-                    to="/blog/$slug"
-                    params={{ slug: post.slug }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.05 }}
-                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl transition hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
                   >
+                    <Link
+                      to="/blog/$slug"
+                      params={{ slug: post.slug }}
+                      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl transition hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
+                    >
                     <div className="relative aspect-[16/10] overflow-hidden">
                       <div className={`absolute inset-0 bg-gradient-to-br ${post.gradient} opacity-80 transition-transform duration-700 group-hover:scale-110`} />
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.35),transparent_60%)]" />
@@ -196,7 +199,8 @@ function BlogPage() {
                         <span className="inline-flex items-center gap-1.5"><Clock className="h-3 w-3" />{post.readTime}</span>
                       </div>
                     </div>
-                  </MotionLink>
+                    </Link>
+                  </motion.div>
                 ))}
             </div>
           )}
