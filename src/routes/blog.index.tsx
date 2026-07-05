@@ -9,7 +9,7 @@ import { posts } from "@/lib/blog-data";
 
 const MotionLink = motion.create(Link);
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       { title: "بلاگ محتوا — بینش‌هایی از دنیای محصول دیجیتال" },
