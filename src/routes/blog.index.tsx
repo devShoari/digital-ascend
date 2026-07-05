@@ -1,12 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { ArrowLeft, Search, Calendar, Clock } from "lucide-react";
 
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
+import { posts } from "@/lib/blog-data";
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       { title: "بلاگ محتوا — بینش‌هایی از دنیای محصول دیجیتال" },
@@ -25,77 +26,6 @@ export const Route = createFileRoute("/blog")({
   }),
   component: BlogPage,
 });
-
-type Post = {
-  title: string;
-  excerpt: string;
-  category: "طراحی" | "مهندسی" | "سئو و رشد" | "استراتژی" | "خلاقیت";
-  readTime: string;
-  date: string;
-  gradient: string;
-  featured?: boolean;
-};
-
-const posts: Post[] = [
-  {
-    title: "طراحی رابط‌های سه‌بعدی با WebGL؛ از ایده تا ۶۰ فریم بر ثانیه",
-    excerpt:
-      "چطور با Three.js و React Three Fiber تجربه‌های تعاملی می‌سازیم که در موبایل هم روان اجرا می‌شوند — از بهینه‌سازی shaderها تا مدیریت حافظه.",
-    category: "مهندسی",
-    readTime: "۱۲ دقیقه",
-    date: "۱۴ تیر ۱۴۰۵",
-    gradient: "from-cyan-400 via-violet-500 to-fuchsia-500",
-    featured: true,
-  },
-  {
-    title: "Core Web Vitals در سال ۲۰۲۶؛ راهنمای عملی برای تیم‌های محصول",
-    excerpt: "معیارهای جدید گوگل، ابزارهای اندازه‌گیری و تکنیک‌هایی که در پروژه‌های واقعی جواب داده‌اند.",
-    category: "سئو و رشد",
-    readTime: "۹ دقیقه",
-    date: "۷ تیر ۱۴۰۵",
-    gradient: "from-amber-400 to-rose-500",
-  },
-  {
-    title: "Design System به مثابه محصول؛ چرا کتابخانه‌ی UI شما شکست می‌خورد",
-    excerpt: "درس‌هایی از ساخت دیزاین‌سیستم برای تیم‌های چند-محصولی و اشتباهات رایجی که باید از آن‌ها اجتناب کنید.",
-    category: "طراحی",
-    readTime: "۸ دقیقه",
-    date: "۳۰ خرداد ۱۴۰۵",
-    gradient: "from-fuchsia-400 to-cyan-400",
-  },
-  {
-    title: "معماری Edge؛ چرا Cloudflare Workers آینده‌ی بک‌اند است",
-    excerpt: "مقایسه‌ی serverless سنتی با edge runtime و راهنمای مهاجرت پروژه‌های واقعی.",
-    category: "مهندسی",
-    readTime: "۱۱ دقیقه",
-    date: "۲۲ خرداد ۱۴۰۵",
-    gradient: "from-emerald-400 to-cyan-500",
-  },
-  {
-    title: "روایت برند در محصولات SaaS؛ فراتر از لوگو و رنگ",
-    excerpt: "چطور صدای برند را در جزئیات تجربه کاربری، میکروکپی و انیمیشن‌ها تزریق کنیم.",
-    category: "خلاقیت",
-    readTime: "۷ دقیقه",
-    date: "۱۵ خرداد ۱۴۰۵",
-    gradient: "from-pink-400 to-orange-400",
-  },
-  {
-    title: "از MVP تا Product-Market Fit؛ چارچوبی که در ۱۲ استارتاپ آزموده‌ایم",
-    excerpt: "متریک‌ها، آزمون‌ها و تصمیم‌های سختی که مسیر یک محصول را تعیین می‌کنند.",
-    category: "استراتژی",
-    readTime: "۱۴ دقیقه",
-    date: "۸ خرداد ۱۴۰۵",
-    gradient: "from-sky-400 to-blue-600",
-  },
-  {
-    title: "انیمیشن‌های اسکرول با GSAP و Lenis؛ راهنمای جامع",
-    excerpt: "الگوهایی که در پروژه‌های واقعی برای ساخت تجربه‌های اسکرول سینمایی استفاده می‌کنیم.",
-    category: "طراحی",
-    readTime: "۱۰ دقیقه",
-    date: "۱ خرداد ۱۴۰۵",
-    gradient: "from-violet-500 to-indigo-500",
-  },
-];
 
 const categories = ["همه", "طراحی", "مهندسی", "سئو و رشد", "استراتژی", "خلاقیت"] as const;
 
@@ -186,14 +116,17 @@ function BlogPage() {
       {featured && cat === "همه" && !query && (
         <section className="px-6 pb-16">
           <div className="mx-auto max-w-6xl">
-            <motion.a
-              href="#"
+            <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="group relative block overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl"
             >
+              <Link
+                to="/blog/$slug"
+                params={{ slug: featured.slug }}
+                className="group relative block overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl"
+              >
               <div className={`absolute inset-0 bg-gradient-to-br ${featured.gradient} opacity-20 transition-opacity group-hover:opacity-30`} />
               <div className="relative grid gap-8 p-8 md:grid-cols-[1.2fr_1fr] md:p-12">
                 <div>
@@ -219,7 +152,8 @@ function BlogPage() {
                   <div className="absolute inset-6 rounded-xl border border-white/30 backdrop-blur-sm" />
                 </div>
               </div>
-            </motion.a>
+              </Link>
+            </motion.div>
           </div>
         </section>
       )}
@@ -236,15 +170,18 @@ function BlogPage() {
               {filtered
                 .filter((p) => !(p.featured && cat === "همه" && !query))
                 .map((post, i) => (
-                  <motion.a
-                    key={post.title}
-                    href="#"
+                  <motion.div
+                    key={post.slug}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.05 }}
-                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl transition hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
                   >
+                    <Link
+                      to="/blog/$slug"
+                      params={{ slug: post.slug }}
+                      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl transition hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
+                    >
                     <div className="relative aspect-[16/10] overflow-hidden">
                       <div className={`absolute inset-0 bg-gradient-to-br ${post.gradient} opacity-80 transition-transform duration-700 group-hover:scale-110`} />
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.35),transparent_60%)]" />
@@ -262,7 +199,8 @@ function BlogPage() {
                         <span className="inline-flex items-center gap-1.5"><Clock className="h-3 w-3" />{post.readTime}</span>
                       </div>
                     </div>
-                  </motion.a>
+                    </Link>
+                  </motion.div>
                 ))}
             </div>
           )}
