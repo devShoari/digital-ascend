@@ -4,7 +4,7 @@ import { ArrowLeft, Calendar, Clock, Share2, Twitter, Linkedin } from "lucide-re
 
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { getPost, getRelated } from "@/lib/blog-data";
+import { getPost, getRelated, type Post } from "@/lib/blog-data";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -73,7 +73,7 @@ function PostError() {
 }
 
 function PostPage() {
-  const { post, related } = Route.useLoaderData();
+  const { post, related } = Route.useLoaderData() as { post: Post; related: Post[] };
 
   return (
     <main dir="rtl" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
