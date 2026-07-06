@@ -48,10 +48,11 @@ function ConstellationCanvas() {
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const parent = canvas?.parentElement;
-    if (!canvas || !parent) return;
-    const ctx = canvas.getContext("2d");
+    const canvas = canvasRef.current!;
+    if (!canvas) return;
+    const parent = canvas.parentElement!;
+    if (!parent) return;
+    const ctx = canvas.getContext("2d")!;
     if (!ctx) return;
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
