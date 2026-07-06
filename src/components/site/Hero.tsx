@@ -356,6 +356,14 @@ export function Hero() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
+  // Re-mount the WebGL scene when the theme flips so palette/blending update.
+  const [themeKey, setThemeKey] = useState(0);
+  useEffect(() => {
+    const obs = new MutationObserver(() => setThemeKey((k) => k + 1));
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <section
       ref={sectionRef}
@@ -369,7 +377,7 @@ export function Hero() {
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-electric/40 to-transparent" />
 
         {/* 3D scene fills the whole stage */}
-        {mounted && <HeroScene scrollProgress={sceneProgress} />}
+        {mounted && <HeroScene key={themeKey} scrollProgress={sceneProgress} />}
 
         {/* cursor halo */}
         <CursorHalo />
