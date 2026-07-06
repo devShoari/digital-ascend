@@ -9,7 +9,7 @@ import { ThemeToggle } from "@/components/site/ThemeToggle";
 const links = [
   { href: "/#services", label: "خدمات" },
   { href: "/#process", label: "فرآیند" },
-  { href: "/#projects", label: "پروژه‌ها" },
+  { href: "/projects", label: "پروژه‌ها" },
   { href: "/experts", label: "متخصصین ما" },
   { href: "/about", label: "درباره" },
   { href: "/#tech", label: "تکنولوژی" },
