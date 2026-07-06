@@ -43,7 +43,7 @@ export function Services() {
                     {isActive && (
                       <motion.span
                         layoutId="svc-pill"
-                        className="absolute inset-0 rounded-xl bg-white/5 ring-1 ring-white/10"
+                        className="absolute inset-0 rounded-xl bg-foreground/5 ring-1 ring-white/10"
                         transition={{ type: "spring", stiffness: 350, damping: 30 }}
                       />
                     )}

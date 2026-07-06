@@ -284,7 +284,7 @@ function MagneticButton({ children, href, variant = "primary" }: { children: Rea
 
   const cls = variant === "primary"
     ? "gradient-brand text-primary-foreground shadow-glow"
-    : "glass-strong text-foreground hover:bg-white/10";
+    : "glass-strong text-foreground hover:bg-foreground/10";
 
   return (
     <motion.a

@@ -70,7 +70,7 @@ function Column({
         {items.map((it) => (
           <li key={it} className="flex items-start gap-3 rounded-xl glass p-3.5">
             <span className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full ${
-              brand ? "gradient-brand text-primary-foreground" : "bg-white/5 text-muted-foreground"
+              brand ? "gradient-brand text-primary-foreground" : "bg-foreground/5 text-muted-foreground"
             }`}>
               <Icon className="size-3" />
             </span>

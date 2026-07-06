@@ -160,7 +160,7 @@ export function Tech() {
                     />
                     <span
                       className={
-                        active ? "gradient-text font-semibold" : "font-semibold text-white/90"
+                        active ? "gradient-text font-semibold" : "font-semibold text-foreground/90"
                       }
                     >
                       {t.name}
@@ -198,13 +198,13 @@ export function Tech() {
             </div>
 
             {/* orbit rings + radar ticks */}
-            <div className="absolute inset-[18%] rounded-full border border-white/10" />
-            <div className="absolute inset-[6%] rounded-full border border-white/10" />
-            <div className="absolute inset-0 rounded-full border border-white/[0.06]" />
+            <div className="absolute inset-[18%] rounded-full border border-foreground/10" />
+            <div className="absolute inset-[6%] rounded-full border border-foreground/10" />
+            <div className="absolute inset-0 rounded-full border border-foreground/[0.06]" />
             {Array.from({ length: 8 }).map((_, i) => (
               <div
                 key={i}
-                className="absolute left-1/2 top-1/2 h-[calc(50%-2px)] w-px origin-top bg-white/[0.06]"
+                className="absolute left-1/2 top-1/2 h-[calc(50%-2px)] w-px origin-top bg-foreground/[0.06]"
                 style={{ transform: `translateX(-50%) rotate(${i * 45}deg)` }}
               />
             ))}
@@ -338,7 +338,7 @@ function Orbit({
                     className={`relative flex size-11 items-center justify-center rounded-full border shadow-elevated transition-all duration-300 ${
                       active
                         ? `scale-125 ${style.border} ${style.bg} shadow-glow`
-                        : "border-white/10 bg-background/80 backdrop-blur hover:border-white/25"
+                        : "border-foreground/10 bg-background/80 backdrop-blur hover:border-foreground/25"
                     }`}
                   >
                     <Icon

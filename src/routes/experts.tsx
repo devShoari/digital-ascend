@@ -81,7 +81,7 @@ function ExpertsPage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-foreground/70 backdrop-blur-xl"
+            className="mx-auto inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/5 px-4 py-1.5 text-xs text-foreground/70 backdrop-blur-xl"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_theme(colors.cyan.400)]" />
             تیم استودیوی محتوا
@@ -122,7 +122,7 @@ function ExpertsPage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="جستجو بر اساس نام، نقش یا مهارت…"
-                className="w-full rounded-full border border-white/10 bg-white/5 py-3 pr-11 pl-4 text-sm text-foreground placeholder:text-foreground/40 backdrop-blur-xl outline-none transition focus:border-cyan-400/40 focus:bg-white/10"
+                className="w-full rounded-full border border-foreground/10 bg-foreground/5 py-3 pr-11 pl-4 text-sm text-foreground placeholder:text-foreground/40 backdrop-blur-xl outline-none transition focus:border-cyan-400/40 focus:bg-foreground/10"
               />
             </div>
           </motion.div>
@@ -135,7 +135,7 @@ function ExpertsPage() {
                 className={`relative rounded-full border px-4 py-2 text-sm transition ${
                   team === t
                     ? "border-transparent bg-foreground text-background"
-                    : "border-white/10 bg-white/5 text-foreground/70 hover:bg-white/10"
+                    : "border-foreground/10 bg-foreground/5 text-foreground/70 hover:bg-foreground/10"
                 }`}
               >
                 {t}
@@ -154,7 +154,7 @@ function ExpertsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: (i % 6) * 0.05 }}
-              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.06]"
+              className="group relative overflow-hidden rounded-3xl border border-foreground/10 bg-foreground/[0.03] p-6 backdrop-blur-xl transition-all hover:-translate-y-1 hover:border-foreground/20 hover:bg-foreground/[0.06]"
             >
               <div
                 className={`pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-gradient-to-br ${e.gradient} opacity-20 blur-3xl transition-opacity duration-500 group-hover:opacity-40`}
@@ -169,7 +169,7 @@ function ExpertsPage() {
                 <div className="min-w-0">
                   <h3 className="text-lg font-semibold leading-tight">{e.name}</h3>
                   <p className="mt-1 text-sm text-foreground/60">{e.role}</p>
-                  <span className="mt-2 inline-block rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-foreground/70">
+                  <span className="mt-2 inline-block rounded-full border border-foreground/10 bg-foreground/5 px-2 py-0.5 text-[11px] text-foreground/70">
                     {e.team}
                   </span>
                 </div>
@@ -181,33 +181,33 @@ function ExpertsPage() {
                 {e.skills.map((s) => (
                   <span
                     key={s}
-                    className="rounded-md border border-white/10 bg-white/5 px-2 py-1 font-mono text-[11px] text-foreground/70"
+                    className="rounded-md border border-foreground/10 bg-foreground/5 px-2 py-1 font-mono text-[11px] text-foreground/70"
                   >
                     {s}
                   </span>
                 ))}
               </div>
 
-              <div className="relative mt-6 flex items-center justify-between border-t border-white/5 pt-4">
+              <div className="relative mt-6 flex items-center justify-between border-t border-foreground/5 pt-4">
                 <div className="flex gap-2 text-foreground/50">
                   <a
                     href="#"
                     aria-label="LinkedIn"
-                    className="rounded-full p-1.5 transition hover:bg-white/10 hover:text-foreground"
+                    className="rounded-full p-1.5 transition hover:bg-foreground/10 hover:text-foreground"
                   >
                     <Linkedin className="h-4 w-4" />
                   </a>
                   <a
                     href="#"
                     aria-label="GitHub"
-                    className="rounded-full p-1.5 transition hover:bg-white/10 hover:text-foreground"
+                    className="rounded-full p-1.5 transition hover:bg-foreground/10 hover:text-foreground"
                   >
                     <Github className="h-4 w-4" />
                   </a>
                   <a
                     href="#"
                     aria-label="Twitter"
-                    className="rounded-full p-1.5 transition hover:bg-white/10 hover:text-foreground"
+                    className="rounded-full p-1.5 transition hover:bg-foreground/10 hover:text-foreground"
                   >
                     <Twitter className="h-4 w-4" />
                   </a>
@@ -218,13 +218,13 @@ function ExpertsPage() {
           ))}
 
           {filtered.length === 0 && (
-            <div className="col-span-full rounded-3xl border border-dashed border-white/10 p-16 text-center text-foreground/50">
+            <div className="col-span-full rounded-3xl border border-dashed border-foreground/10 p-16 text-center text-foreground/50">
               متخصصی با این فیلتر پیدا نشد.
             </div>
           )}
         </div>
 
-        <div className="mx-auto mt-20 max-w-4xl overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.02] to-transparent p-10 text-center backdrop-blur-xl">
+        <div className="mx-auto mt-20 max-w-4xl overflow-hidden rounded-3xl border border-foreground/10 bg-gradient-to-br from-white/[0.06] via-white/[0.02] to-transparent p-10 text-center backdrop-blur-xl">
           <h2 className="text-3xl font-bold md:text-4xl">به تیم ما بپیوندید</h2>
           <p className="mx-auto mt-3 max-w-xl text-foreground/60">
             به دنبال افرادی هستیم که ساختن محصولات کلاس‌جهانی برایشان یک وسواس است.
@@ -238,7 +238,7 @@ function ExpertsPage() {
             </a>
             <Link
               to="/"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm text-foreground/80 backdrop-blur-xl transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/5 px-6 py-3 text-sm text-foreground/80 backdrop-blur-xl transition hover:bg-foreground/10"
             >
               <ArrowLeft className="h-4 w-4" />
               بازگشت به خانه

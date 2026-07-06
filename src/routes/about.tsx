@@ -242,7 +242,7 @@ function Module({
   return (
     <div
       onMouseMove={handleGlow}
-      className={`group relative overflow-hidden border border-white/10 bg-white/[0.02] p-6 ${className}`}
+      className={`group relative overflow-hidden border border-foreground/10 bg-foreground/[0.02] p-6 ${className}`}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -258,7 +258,7 @@ function Module({
 
       <div className="relative">
         <div className="flex items-center justify-between">
-          <div className="flex h-11 w-11 items-center justify-center border border-white/10 bg-white/[0.03] text-amber-300/90">
+          <div className="flex h-11 w-11 items-center justify-center border border-foreground/10 bg-foreground/[0.03] text-amber-300/90">
             <Icon className="h-5 w-5" />
           </div>
           <span dir="ltr" className="font-mono text-[10px] tracking-[0.2em] text-violet-300/60">
@@ -338,7 +338,7 @@ function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               dir="ltr"
-              className="mb-6 inline-flex items-center gap-2 border border-white/10 bg-white/[0.03] px-4 py-1.5 font-mono text-[11px] tracking-wider text-violet-300/80"
+              className="mb-6 inline-flex items-center gap-2 border border-foreground/10 bg-foreground/[0.03] px-4 py-1.5 font-mono text-[11px] tracking-wider text-violet-300/80"
             >
               <span className="relative flex h-1.5 w-1.5">
                 {!prefersReducedMotion && (

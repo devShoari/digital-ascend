@@ -38,7 +38,7 @@ export function ThemeToggle() {
       whileTap={{ scale: 0.95 }}
       onClick={toggle}
       aria-label={isDark ? "روشن کردن حالت روز" : "روشن کردن حالت شب"}
-      className="relative flex h-10 w-10 items-center justify-center rounded-full border border-input bg-background/80 text-foreground shadow-sm backdrop-blur-xl transition hover:bg-background/90 dark:border-white/10 dark:bg-white/10 dark:text-white"
+      className="relative flex h-10 w-10 items-center justify-center rounded-full border border-input bg-background/80 text-foreground shadow-sm backdrop-blur-xl transition hover:bg-background/90 dark:border-foreground/10 dark:bg-foreground/10 dark:text-white"
     >
       <motion.span
         key={theme}
