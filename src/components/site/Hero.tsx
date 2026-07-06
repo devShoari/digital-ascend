@@ -374,8 +374,14 @@ export function Hero() {
         {/* cursor halo */}
         <CursorHalo />
 
-        {/* radial vignette to keep text readable */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,oklch(0.13_0.012_270/0.85)_0%,oklch(0.13_0.012_270/0.55)_35%,transparent_75%)]" />
+        {/* radial vignette to keep text readable — theme-aware via --background */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 40% at 50% 50%, color-mix(in oklch, var(--background) 82%, transparent) 0%, color-mix(in oklch, var(--background) 45%, transparent) 40%, transparent 75%)",
+          }}
+        />
 
         {/* floating holographic chips */}
         {CHIPS.map((c) => (
