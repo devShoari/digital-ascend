@@ -40,8 +40,8 @@ export function Nav() {
           duration: 0.7,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className={`relative flex w-full max-w-6xl items-center justify-between rounded-full border border-foreground/10 px-3 py-2 backdrop-blur-2xl transition-all duration-500 ${
-          scrolled ? "bg-black/55 shadow-2xl shadow-cyan-500/10" : "bg-black/25"
+        className={`relative flex w-full max-w-6xl items-center justify-between rounded-full border border-border px-3 py-2 backdrop-blur-2xl transition-all duration-500 ${
+          scrolled ? "bg-background/75 shadow-2xl shadow-cyan-500/10" : "bg-background/50"
         }`}
       >
         {/* Glow */}
@@ -59,13 +59,13 @@ export function Nav() {
 
           <div>
             <div className="font-bold">محتوا</div>
-            <div className="text-xs text-foreground/50">Digital Product Studio</div>
+            <div className="text-xs text-muted-foreground">Digital Product Studio</div>
           </div>
         </a>
 
         {/* Desktop Navigation */}
         <NavigationMenu.Root className="hidden md:block">
-          <NavigationMenu.List className="flex items-center gap-1 rounded-full bg-foreground/5 p-1">
+          <NavigationMenu.List className="flex items-center gap-1 rounded-full bg-foreground/[0.06] p-1">
             {links.map((item) => (
               <NavigationMenu.Item key={item.href}>
                 <NavigationMenu.Link asChild>
@@ -78,7 +78,7 @@ export function Nav() {
                           stiffness: 450,
                           damping: 35,
                         }}
-                        className="absolute inset-0 rounded-full bg-foreground/10"
+                        className="absolute inset-0 rounded-full bg-foreground/15"
                       />
                     )}
 
@@ -86,7 +86,7 @@ export function Nav() {
                       whileHover={{ y: -1 }}
                       whileTap={{ scale: 0.95 }}
                       className={`relative block rounded-full px-5 py-2.5 text-sm transition-colors ${
-                        active === item.href ? "text-white" : "text-foreground/60 hover:text-foreground"
+                        active === item.href ? "text-foreground" : "text-foreground/60 hover:text-foreground"
                       }`}
                     >
                       {item.label}
@@ -121,11 +121,11 @@ export function Nav() {
 
             <SheetContent
               side="right"
-              className="w-[320px] border-l border-foreground/10 bg-zinc-950 p-0 text-white"
+              className="w-[320px] border-l border-border bg-background p-0 text-foreground"
             >
-              <div className="border-b border-foreground/10 p-6">
+              <div className="border-b border-border p-6">
                 <h2 className="text-xl font-bold">محتوا</h2>
-                <p className="mt-1 text-sm text-foreground/50">Digital Product Studio</p>
+                <p className="mt-1 text-sm text-muted-foreground">Digital Product Studio</p>
               </div>
 
               <div className="flex flex-col p-4">
