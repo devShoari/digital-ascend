@@ -280,7 +280,7 @@ function PostPage() {
                   {block.heading && (
                     <h2
                       id={anchorId}
-                      className="mb-4 scroll-mt-24 text-2xl font-bold text-white md:text-3xl"
+                      className="mb-4 scroll-mt-24 text-2xl font-bold text-foreground md:text-3xl"
                     >
                       {block.heading}
                     </h2>

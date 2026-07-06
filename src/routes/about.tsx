@@ -348,7 +348,7 @@ function AboutPage() {
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
               </span>
               STUDIO · ONLINE
-              <span className="text-white/20">/</span>
+              <span className="text-foreground/20">/</span>
               DESIGN × ENGINEERING × GROWTH
             </motion.div>
 
