@@ -319,9 +319,9 @@ function CursorHalo() {
     <motion.div
       aria-hidden
       style={{ x: sx, y: sy }}
-      className="pointer-events-none fixed left-0 top-0 z-[5] -ml-[140px] -mt-[140px] h-[280px] w-[280px] rounded-full mix-blend-screen"
+      className="pointer-events-none fixed left-0 top-0 z-[5] -ml-[140px] -mt-[140px] h-[280px] w-[280px] rounded-full mix-blend-multiply dark:mix-blend-screen"
     >
-      <div className="h-full w-full rounded-full bg-electric/25 blur-3xl" />
+      <div className="h-full w-full rounded-full bg-electric/30 blur-3xl" />
     </motion.div>
   );
 }
