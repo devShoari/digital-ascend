@@ -163,7 +163,7 @@ function ShareRow({ post }: { post: Post }) {
       >
         {copied ? (
           <Check className="h-4 w-4 text-emerald-300" aria-hidden="true" />
-        ) : navigator.share ? (
+        ) : typeof navigator !== "undefined" && "share" in navigator ? (
           <Share2 className="h-4 w-4" aria-hidden="true" />
         ) : (
           <Link2 className="h-4 w-4" aria-hidden="true" />
