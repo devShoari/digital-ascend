@@ -37,7 +37,7 @@ export function Education() {
                 </a>
                 <a
                   href="#"
-                  className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-semibold hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-semibold hover:bg-foreground/10"
                 >
                   معرفی برنامه آموزشی
                 </a>

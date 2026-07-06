@@ -249,7 +249,7 @@ function CircuitNode({
                 className={`flex size-12 rotate-45 items-center justify-center rounded-lg border transition-all duration-500 ${
                   active
                     ? "border-electric/60 gradient-brand shadow-glow"
-                    : "border-white/10 bg-white/[0.02]"
+                    : "border-foreground/10 bg-foreground/[0.02]"
                 }`}
               >
                 <Icon
@@ -288,7 +288,7 @@ function CircuitNode({
             : { top: `${topPct}%`, left: `${cardEdgePct}%`, transform: "translateY(-50%)" }
         }
       >
-        <div className="group relative rounded-2xl border border-white/[0.06] glass-strong p-6 text-right transition-all duration-500 hover:border-electric/25 hover:shadow-glow">
+        <div className="group relative rounded-2xl border border-foreground/[0.06] glass-strong p-6 text-right transition-all duration-500 hover:border-electric/25 hover:shadow-glow">
           <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-b from-electric/[0.03] to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
           <div className="relative">
             <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
@@ -313,10 +313,10 @@ function MobileStep({ step, index }: { step: Step; index: number }) {
       transition={{ duration: 0.5, delay: index * 0.05 }}
       className="relative flex gap-4 pr-12"
     >
-      <div className="absolute right-0 top-0 flex size-10 items-center justify-center rounded-lg border border-white/10 bg-background">
+      <div className="absolute right-0 top-0 flex size-10 items-center justify-center rounded-lg border border-foreground/10 bg-background">
         <Icon className="size-4 text-electric" />
       </div>
-      <div className="flex-1 rounded-2xl border border-white/[0.06] glass-strong p-5 text-right">
+      <div className="flex-1 rounded-2xl border border-foreground/[0.06] glass-strong p-5 text-right">
         <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
           {`گام ${String(index + 1).padStart(2, "0")}`}
         </div>

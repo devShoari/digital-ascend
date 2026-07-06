@@ -17,7 +17,8 @@ function HeroScene({ scrollProgress }: { scrollProgress: MotionValue<number> }) 
     let height = mount.clientHeight;
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x0a0a14, 0.05);
+    const isDark = document.documentElement.classList.contains("dark");
+    scene.fog = new THREE.FogExp2(isDark ? 0x0a0a14 : 0xf1f1f8, 0.05);
     const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 200);
     camera.position.set(0, 0, 9);
 
@@ -35,9 +36,9 @@ function HeroScene({ scrollProgress }: { scrollProgress: MotionValue<number> }) 
     const velocity = new Float32Array(COUNT * 3);
     const seed = new Float32Array(COUNT);
 
-    const cBlue = new THREE.Color("#5b8cff");
-    const cViolet = new THREE.Color("#b07bff");
-    const cCyan = new THREE.Color("#7ee3ff");
+    const cBlue = new THREE.Color(isDark ? "#5b8cff" : "#3355ee");
+    const cViolet = new THREE.Color(isDark ? "#b07bff" : "#8a3ff0");
+    const cCyan = new THREE.Color(isDark ? "#7ee3ff" : "#1cb4d8");
 
     for (let i = 0; i < COUNT; i++) {
       // distribute on two shells for depth
@@ -84,9 +85,9 @@ function HeroScene({ scrollProgress }: { scrollProgress: MotionValue<number> }) 
       size: 0.07,
       vertexColors: true,
       transparent: true,
-      opacity: 0.95,
+      opacity: isDark ? 0.95 : 0.85,
       depthWrite: false,
-      blending: THREE.AdditiveBlending,
+      blending: isDark ? THREE.AdditiveBlending : THREE.NormalBlending,
       map: sprite,
     });
     const points = new THREE.Points(geom, mat);
@@ -96,15 +97,15 @@ function HeroScene({ scrollProgress }: { scrollProgress: MotionValue<number> }) 
     const coreGroup = new THREE.Group();
     const coreA = new THREE.Mesh(
       new THREE.IcosahedronGeometry(0.95, 2),
-      new THREE.MeshBasicMaterial({ color: 0x5b8cff, wireframe: true, transparent: true, opacity: 0.22 }),
+      new THREE.MeshBasicMaterial({ color: isDark ? 0x5b8cff : 0x3355ee, wireframe: true, transparent: true, opacity: isDark ? 0.22 : 0.28 }),
     );
     const coreB = new THREE.Mesh(
       new THREE.IcosahedronGeometry(1.5, 1),
-      new THREE.MeshBasicMaterial({ color: 0xb07bff, wireframe: true, transparent: true, opacity: 0.1 }),
+      new THREE.MeshBasicMaterial({ color: isDark ? 0xb07bff : 0x8a3ff0, wireframe: true, transparent: true, opacity: isDark ? 0.1 : 0.15 }),
     );
     const coreC = new THREE.Mesh(
       new THREE.IcosahedronGeometry(2.1, 0),
-      new THREE.MeshBasicMaterial({ color: 0x7ee3ff, wireframe: true, transparent: true, opacity: 0.06 }),
+      new THREE.MeshBasicMaterial({ color: isDark ? 0x7ee3ff : 0x1cb4d8, wireframe: true, transparent: true, opacity: isDark ? 0.06 : 0.1 }),
     );
     coreGroup.add(coreA, coreB, coreC);
     scene.add(coreGroup);
@@ -124,8 +125,8 @@ function HeroScene({ scrollProgress }: { scrollProgress: MotionValue<number> }) 
     starGeom.setAttribute("position", new THREE.BufferAttribute(sPos, 3));
     starGeom.setAttribute("color", new THREE.BufferAttribute(sCol, 3));
     const starMat = new THREE.PointsMaterial({
-      size: 0.05, vertexColors: true, transparent: true, opacity: 0.6,
-      depthWrite: false, blending: THREE.AdditiveBlending, map: sprite,
+      size: 0.05, vertexColors: true, transparent: true, opacity: isDark ? 0.6 : 0.4,
+      depthWrite: false, blending: isDark ? THREE.AdditiveBlending : THREE.NormalBlending, map: sprite,
     });
     const stars = new THREE.Points(starGeom, starMat);
     scene.add(stars);
@@ -233,8 +234,8 @@ function HeroScene({ scrollProgress }: { scrollProgress: MotionValue<number> }) 
       camera.lookAt(0, 0, 0);
 
       // material opacity fade with scroll (foreground fast, bg slow)
-      mat.opacity = 0.95 * (1 - scroll * 0.7);
-      starMat.opacity = 0.6 * (1 - scroll * 0.3);
+      mat.opacity = (isDark ? 0.95 : 0.85) * (1 - scroll * 0.7);
+      starMat.opacity = (isDark ? 0.6 : 0.4) * (1 - scroll * 0.3);
 
       renderer.render(scene, camera);
       raf = requestAnimationFrame(render);
@@ -284,7 +285,7 @@ function MagneticButton({ children, href, variant = "primary" }: { children: Rea
 
   const cls = variant === "primary"
     ? "gradient-brand text-primary-foreground shadow-glow"
-    : "glass-strong text-foreground hover:bg-white/10";
+    : "glass-strong text-foreground hover:bg-foreground/10";
 
   return (
     <motion.a
@@ -318,9 +319,9 @@ function CursorHalo() {
     <motion.div
       aria-hidden
       style={{ x: sx, y: sy }}
-      className="pointer-events-none fixed left-0 top-0 z-[5] -ml-[140px] -mt-[140px] h-[280px] w-[280px] rounded-full mix-blend-screen"
+      className="pointer-events-none fixed left-0 top-0 z-[5] -ml-[140px] -mt-[140px] h-[280px] w-[280px] rounded-full mix-blend-multiply dark:mix-blend-screen"
     >
-      <div className="h-full w-full rounded-full bg-electric/25 blur-3xl" />
+      <div className="h-full w-full rounded-full bg-electric/30 blur-3xl" />
     </motion.div>
   );
 }
@@ -355,6 +356,14 @@ export function Hero() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
+  // Re-mount the WebGL scene when the theme flips so palette/blending update.
+  const [themeKey, setThemeKey] = useState(0);
+  useEffect(() => {
+    const obs = new MutationObserver(() => setThemeKey((k) => k + 1));
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <section
       ref={sectionRef}
@@ -368,13 +377,19 @@ export function Hero() {
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-electric/40 to-transparent" />
 
         {/* 3D scene fills the whole stage */}
-        {mounted && <HeroScene scrollProgress={sceneProgress} />}
+        {mounted && <HeroScene key={themeKey} scrollProgress={sceneProgress} />}
 
         {/* cursor halo */}
         <CursorHalo />
 
-        {/* radial vignette to keep text readable */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,oklch(0.13_0.012_270/0.85)_0%,oklch(0.13_0.012_270/0.55)_35%,transparent_75%)]" />
+        {/* radial vignette to keep text readable — theme-aware via --background */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 40% at 50% 50%, color-mix(in oklch, var(--background) 82%, transparent) 0%, color-mix(in oklch, var(--background) 45%, transparent) 40%, transparent 75%)",
+          }}
+        />
 
         {/* floating holographic chips */}
         {CHIPS.map((c) => (

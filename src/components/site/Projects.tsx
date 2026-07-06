@@ -80,15 +80,15 @@ function ProjectCard({ p, reverse }: { p: (typeof projects)[number]; reverse: bo
         <div className="absolute inset-0 grid-bg opacity-40" />
         {/* mock browser frame */}
         <div className="absolute inset-6 rounded-2xl glass shadow-elevated overflow-hidden">
-          <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-2.5">
-            <span className="size-2 rounded-full bg-white/20" />
-            <span className="size-2 rounded-full bg-white/20" />
-            <span className="size-2 rounded-full bg-white/20" />
+          <div className="flex items-center gap-1.5 border-b border-foreground/10 px-4 py-2.5">
+            <span className="size-2 rounded-full bg-foreground/20" />
+            <span className="size-2 rounded-full bg-foreground/20" />
+            <span className="size-2 rounded-full bg-foreground/20" />
           </div>
           <div className="p-5 space-y-3">
             <div className="h-3 w-3/5 rounded-full gradient-brand opacity-90" />
-            <div className="h-2 w-4/5 rounded-full bg-white/10" />
-            <div className="h-2 w-2/5 rounded-full bg-white/10" />
+            <div className="h-2 w-4/5 rounded-full bg-foreground/10" />
+            <div className="h-2 w-2/5 rounded-full bg-foreground/10" />
             <div className="mt-4 grid grid-cols-3 gap-2">
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="h-14 rounded-lg glass" />
