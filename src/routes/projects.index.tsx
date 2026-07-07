@@ -6,7 +6,7 @@ import { ArrowLeft, Search, Sparkles } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 
-export const Route = createFileRoute("/projects")({
+export const Route = createFileRoute("/projects/")({
   head: () => ({
     meta: [
       { title: "پروژه‌ها — استودیوی محتوا" },
