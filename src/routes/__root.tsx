@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { AuthProvider } from "@/lib/auth-context";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -122,8 +123,11 @@ function RootShell({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
       </head>
       <body className="bg-background text-foreground antialiased">
-        {children}
-        <Scripts />
+        {" "}
+        <AuthProvider>
+          {children}
+          <Scripts />
+        </AuthProvider>
       </body>
     </html>
   );

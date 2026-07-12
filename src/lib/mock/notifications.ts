@@ -1,0 +1,58 @@
+import type { AppNotification } from "./types";
+
+export const mockNotifications: AppNotification[] = [
+  {
+    id: "n_1",
+    title: "بازخورد جدید روی «نوا فین‌تک»",
+    body: "آرمین رستمی روی صفحه داشبورد کامنت جدیدی گذاشت و منتظر تایید نهایی شماست.",
+    visibility: "private",
+    read: false,
+    createdAt: "2026-07-11T08:20:00",
+    category: "پروژه",
+  },
+  {
+    id: "n_2",
+    title: "بروزرسانی سیستم طراحی منتشر شد",
+    body: "نسخه ۲.۴ کتابخانه کامپوننت‌ها با پشتیبانی کامل از حالت تیره منتشر شد.",
+    visibility: "public",
+    read: false,
+    createdAt: "2026-07-10T14:05:00",
+    category: "سیستم",
+  },
+  {
+    id: "n_3",
+    title: "پیام جدید از کیان دلاور",
+    body: "سلام سارا، جلسه فردا ساعت ۱۰ صبح درباره اسپرینت بعدی برگزار می‌شود.",
+    visibility: "private",
+    read: true,
+    createdAt: "2026-07-09T11:40:00",
+    category: "پیام",
+  },
+  {
+    id: "n_4",
+    title: "ورود جدید به حساب کاربری",
+    body: "یک ورود جدید از دستگاه مک‌بوک پرو در تهران شناسایی شد.",
+    visibility: "private",
+    read: true,
+    createdAt: "2026-07-08T19:12:00",
+    category: "امنیت",
+  },
+  {
+    id: "n_5",
+    title: "مهلت پروژه «اَتلس AI» نزدیک است",
+    body: "تنها ۸ روز تا موعد تحویل فاز اول داشبورد مدیریت باقی مانده است.",
+    visibility: "private",
+    read: false,
+    createdAt: "2026-07-07T09:00:00",
+    category: "پروژه",
+  },
+  {
+    id: "n_6",
+    title: "خبرنامه ماهانه استودیو",
+    body: "مروری بر پروژه‌های تحویل‌شده و دستاوردهای تیم در تیر ماه.",
+    visibility: "public",
+    read: true,
+    createdAt: "2026-07-01T10:00:00",
+    category: "سیستم",
+  },
+];
