@@ -77,6 +77,7 @@ export type ClientRequest = {
   message: string;
   budget: string;
   status: RequestStatus;
+  rejectionReason?: string;
   createdAt: string; // ISO date
 };
 

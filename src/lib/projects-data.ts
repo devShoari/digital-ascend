@@ -39,7 +39,7 @@ export const projects: Project[] = [
     tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "TanStack Query"],
     metrics: [
       { k: "SSR + SEO", v: "100%" },
-      { k: "کامپوننت‌های قابل استفاده مجدد", v: "60+" },
+      { k: "Reusable Components", v: "60+" },
       { k: "Responsive", v: "Responsive" },
     ],
     gradient: "from-electric/40 to-violet/40",

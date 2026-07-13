@@ -81,16 +81,48 @@ function ProjectCard({ p }: { p: (typeof projects)[number]; reverse: boolean }) 
           ))}
         </div>
 
-        <div className="mt-6 grid grid-cols-3 gap-3">
-          {p.metrics.map((m) => (
-            <div
+        <div dir="ltr" className="mt-8 grid grid-cols-3 gap-4">
+          {p.metrics.map((m, index) => (
+            <motion.div
               key={m.k}
-              className="rounded-xl glass p-3 transition-transform duration-300 group-hover:scale-95"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: index * 0.1,
+                duration: 0.4,
+              }}
+              className="
+        relative overflow-hidden rounded-2xl
+        border border-white/10
+        bg-white/[0.03]
+        p-4
+        backdrop-blur-xl
+        transition-all duration-300
+        group-hover:border-electric/30
+        hover:-translate-y-1
+      "
             >
-              <div className="num gradient-text text-xl font-bold">{m.v}</div>
+              {/* glow */}
+              <div
+                className="
+          absolute -right-8 -top-8
+          h-20 w-20 rounded-full
+          bg-electric/20 blur-3xl
+          opacity-0 transition-opacity
+          group-hover:opacity-100
+        "
+              />
 
-              <div className="mt-1 text-[10px] leading-snug text-muted-foreground">{m.k}</div>
-            </div>
+              <div className="relative z-10">
+                <div className="flex items-center justify-between">
+                  <span className="text-[12px] uppercase font-bold gradient-text">{m.v}</span>
+
+                  <div className="h-2 w-2 rounded-full bg-electric shadow-[0_0_12px_currentColor]" />
+                </div>
+
+                <div className="mt-1 text-xs text-muted-foreground">{m.k}</div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
