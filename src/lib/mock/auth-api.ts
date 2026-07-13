@@ -1,11 +1,11 @@
 import type { AccountType, AuthResult, User } from "./types";
-import { demoSpecialist, demoUser, findUserByEmail, mockUsersDb } from "./users";
+import { demoClient, demoExpert, findUserByEmail, mockUsersDb } from "./users";
 
 // Demo credentials shown on the login screen — one per account type,
 // so the role toggle there can prefill the right example account.
 export const DEMO_CREDENTIALS: Record<AccountType, { email: string; password: string }> = {
-  user: { email: demoUser.email, password: "Password123!" },
-  specialist: { email: demoSpecialist.email, password: "Password123!" },
+  client: { email: demoClient.email, password: "Password123!" },
+  expert: { email: demoExpert.email, password: "Password123!" },
 };
 
 function delay<T>(value: T, ms = 900): Promise<T> {
@@ -41,18 +41,18 @@ export async function registerRequest(input: {
   if (!isValidPassword(input.password)) {
     return { ok: false, error: "رمز عبور باید حداقل ۸ کاراکتر و شامل حرف و عدد باشد." };
   }
-  const isSpecialist = input.accountType === "specialist";
+  const isExpert = input.accountType === "expert";
   const newUser: User = {
     id: `u_${Math.floor(Math.random() * 100000)}`,
     name: input.name,
     email: input.email,
     accountType: input.accountType,
-    role: isSpecialist ? "متخصص مستقل" : "عضو تیم",
-    title: isSpecialist ? input.specialty || "متخصص جدید" : "عضو جدید تیم",
+    role: isExpert ? "متخصص مستقل" : "کارفرما",
+    title: isExpert ? input.specialty || "متخصص جدید" : "کارفرمای جدید",
     skills: [],
     joinedAt: new Date().toISOString(),
     emailVerified: false,
-    ...(isSpecialist
+    ...(isExpert
       ? {
           specialty: input.specialty || undefined,
           rating: 0,

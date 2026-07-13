@@ -25,7 +25,7 @@ function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const [role, setRole] = useState<AccountType>("user");
+  const [role, setRole] = useState<AccountType>("client");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
@@ -145,7 +145,7 @@ function LoginPage() {
           onClick={fillDemo}
           className="w-full text-center text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
         >
-          استفاده از حساب دمو {role === "specialist" ? "متخصص" : "کاربر"} (
+          استفاده از حساب دمو {role === "expert" ? "متخصص" : "کارفرما"} (
           {DEMO_CREDENTIALS[role].email})
         </button>
 

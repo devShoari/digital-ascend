@@ -1,9 +1,9 @@
-import { User, Briefcase } from "lucide-react";
+import { Briefcase, Building2 } from "lucide-react";
 import type { AccountType } from "@/lib/mock/types";
 
-const OPTIONS: { value: AccountType; label: string; icon: typeof User }[] = [
-  { value: "user", label: "کاربر عادی", icon: User },
-  { value: "specialist", label: "متخصص", icon: Briefcase },
+const OPTIONS: { value: AccountType; label: string; icon: typeof Briefcase }[] = [
+  { value: "client", label: "کارفرما", icon: Building2 },
+  { value: "expert", label: "متخصص", icon: Briefcase },
 ];
 
 export function RoleToggle({

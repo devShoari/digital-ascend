@@ -32,7 +32,7 @@ function RegisterPage() {
   const { register } = useAuth();
   const navigate = useNavigate();
 
-  const [role, setRole] = useState<AccountType>("user");
+  const [role, setRole] = useState<AccountType>("client");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,7 +49,7 @@ function RegisterPage() {
     if (name.trim().length < 2) next.name = "نام و نام خانوادگی را وارد کنید.";
     if (!/^\S+@\S+\.\S+$/.test(email)) next.email = "ایمیل معتبر وارد کنید.";
     if (!passwordValid) next.password = "رمز عبور شرایط لازم را ندارد.";
-    if (role === "specialist" && specialty.trim().length < 2)
+    if (role === "expert" && specialty.trim().length < 2)
       next.specialty = "حوزه تخصص را وارد کنید.";
     if (!agree) next.agree = "برای ادامه باید قوانین را بپذیرید.";
     setErrors(next);
@@ -133,7 +133,7 @@ function RegisterPage() {
           {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
         </div>
 
-        {role === "specialist" && (
+        {role === "expert" && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}

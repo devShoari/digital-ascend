@@ -3,7 +3,7 @@
 // mock functions in `auth-api.ts` / `*.ts` for real fetch calls later
 // should not require touching any component.
 
-export type AccountType = "user" | "specialist";
+export type AccountType = "client" | "expert";
 
 export type User = {
   id: string;
@@ -11,7 +11,7 @@ export type User = {
   email: string;
   avatarUrl?: string;
   accountType: AccountType;
-  role: "مدیر" | "عضو تیم" | "مشتری" | "متخصص مستقل";
+  role: "مدیر" | "عضو تیم" | "کارفرما" | "متخصص مستقل";
   title: string;
   phone?: string;
   location?: string;
@@ -19,7 +19,7 @@ export type User = {
   skills: string[];
   joinedAt: string; // ISO date
   emailVerified: boolean;
-  // Specialist-only fields (present when accountType === "specialist")
+  // Expert-only fields (present when accountType === "expert")
   specialty?: string;
   rating?: number;
   reviewsCount?: number;

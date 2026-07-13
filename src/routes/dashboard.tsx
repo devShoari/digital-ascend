@@ -13,6 +13,7 @@ const PAGE_TITLES: Record<string, string> = {
   "/dashboard": "داشبورد",
   "/dashboard/profile": "پروفایل",
   "/dashboard/projects": "پروژه‌های من",
+  "/dashboard/messages": "گفتگو با تیم",
   "/dashboard/requests": "درخواست‌های مشتریان",
   "/dashboard/availability": "برنامه دسترس‌پذیری",
   "/dashboard/earnings": "درآمد",

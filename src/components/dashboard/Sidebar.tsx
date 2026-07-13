@@ -10,21 +10,23 @@ import {
   Inbox,
   CalendarClock,
   Wallet,
+  MessagesSquare,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 
-const USER_NAV = [
+const CLIENT_NAV = [
   { to: "/dashboard", label: "داشبورد", icon: LayoutDashboard },
   { to: "/dashboard/profile", label: "پروفایل", icon: User },
-  { to: "/dashboard/projects", label: "پروژه‌ها", icon: FolderKanban },
+  { to: "/dashboard/projects", label: "پروژه‌های من", icon: FolderKanban },
+  { to: "/dashboard/messages", label: "گفتگو با تیم", icon: MessagesSquare },
   { to: "/dashboard/notifications", label: "اعلان‌ها", icon: Bell },
   { to: "/dashboard/settings", label: "تنظیمات", icon: Settings },
 ] as const;
 
-const SPECIALIST_NAV = [
+const EXPERT_NAV = [
   { to: "/dashboard", label: "داشبورد", icon: LayoutDashboard },
   { to: "/dashboard/profile", label: "پروفایل", icon: User },
-  { to: "/dashboard/requests", label: "درخواست‌های مشتریان", icon: Inbox },
+  { to: "/dashboard/requests", label: "درخواست‌های کارفرمایان", icon: Inbox },
   { to: "/dashboard/availability", label: "برنامه دسترس‌پذیری", icon: CalendarClock },
   { to: "/dashboard/earnings", label: "درآمد", icon: Wallet },
   { to: "/dashboard/notifications", label: "اعلان‌ها", icon: Bell },
@@ -34,7 +36,7 @@ const SPECIALIST_NAV = [
 export function Sidebar({ className = "" }: { className?: string }) {
   const { user, logout } = useAuth();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const NAV = user?.accountType === "specialist" ? SPECIALIST_NAV : USER_NAV;
+  const NAV = user?.accountType === "expert" ? EXPERT_NAV : CLIENT_NAV;
 
   return (
     <aside className={`flex h-full flex-col justify-between p-4 ${className}`}>
@@ -84,7 +86,7 @@ export function Sidebar({ className = "" }: { className?: string }) {
           <div className="min-w-0">
             <div className="flex items-center gap-1.5">
               <span className="truncate text-sm font-semibold">{user?.name ?? "کاربر"}</span>
-              {user?.accountType === "specialist" && (
+              {user?.accountType === "expert" && (
                 <span className="shrink-0 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-1.5 py-0.5 text-[9px] font-bold text-white">
                   متخصص
                 </span>

@@ -13,7 +13,7 @@ export const Route = createFileRoute("/dashboard/projects")({
 });
 
 function ProjectsPage() {
-  useRoleGuard("user");
+  useRoleGuard("client");
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState<(typeof projectStatusOptions)[number]>("همه");
