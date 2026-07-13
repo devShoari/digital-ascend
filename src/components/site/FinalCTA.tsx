@@ -285,7 +285,7 @@ export function FinalCTA() {
           </MagneticLink>
           <MagneticLink
             href="#projects"
-            className="inline-flex items-center gap-2 rounded-full glass px-8 py-4 text-base font-semibold transition-colors hover:bg-white/10"
+            className="inline-flex items-center gap-2 rounded-full glass px-8 py-4 text-base font-semibold transition-colors hover:bg-foreground/10"
           >
             مشاهده پروژه‌ها
           </MagneticLink>

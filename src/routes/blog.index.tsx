@@ -58,7 +58,7 @@ function BlogPage() {
   useEffect(() => {
     const handle = setTimeout(() => {
       navigate({
-        search: (prev) => ({ ...prev, q: query.trim() || undefined }),
+        search: (prev: Record<string, unknown>) => ({ ...prev, q: query.trim() || undefined }),
         replace: true,
       });
     }, 300);
@@ -69,13 +69,13 @@ function BlogPage() {
   const setCat = (c: Category) => {
     setCatLocal(c);
     navigate({
-      search: (prev) => ({ ...prev, category: c === "همه" ? undefined : c, tag: undefined }),
+      search: (prev: Record<string, unknown>) => ({ ...prev, category: c === "همه" ? undefined : c, tag: undefined }),
       replace: true,
     });
   };
 
   const clearTag = () => {
-    navigate({ search: (prev) => ({ ...prev, tag: undefined }), replace: true });
+    navigate({ search: (prev: Record<string, unknown>) => ({ ...prev, tag: undefined }), replace: true });
   };
 
   const clearAll = () => {

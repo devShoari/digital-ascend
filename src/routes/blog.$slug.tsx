@@ -57,7 +57,7 @@ function PostNotFound() {
       <Nav />
       <div className="mx-auto flex max-w-2xl flex-col items-center px-6 pb-32 pt-40 text-center">
         <h1 className="text-4xl font-bold">مقاله پیدا نشد</h1>
-        <p className="mt-4 text-white/60">به نظر می‌رسد این مقاله جابه‌جا یا حذف شده است.</p>
+        <p className="mt-4 text-foreground/60">به نظر می‌رسد این مقاله جابه‌جا یا حذف شده است.</p>
         <Link
           to="/blog"
           className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -77,7 +77,7 @@ function PostError() {
       <Nav />
       <div className="mx-auto max-w-2xl px-6 pb-32 pt-40 text-center">
         <h1 className="text-3xl font-bold">خطایی رخ داد</h1>
-        <p className="mt-4 text-white/60">لطفاً دوباره تلاش کنید.</p>
+        <p className="mt-4 text-foreground/60">لطفاً دوباره تلاش کنید.</p>
       </div>
       <Footer />
     </main>
@@ -134,10 +134,10 @@ function ShareRow({ post }: { post: Post }) {
   };
 
   const iconBtn =
-    "flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40";
+    "flex h-9 w-9 items-center justify-center rounded-full border border-foreground/10 bg-foreground/5 transition hover:bg-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40";
 
   return (
-    <div className="flex items-center gap-2 text-white/60">
+    <div className="flex items-center gap-2 text-foreground/60">
       <span className="ml-1 text-xs">اشتراک‌گذاری:</span>
       <button
         type="button"
@@ -163,7 +163,7 @@ function ShareRow({ post }: { post: Post }) {
       >
         {copied ? (
           <Check className="h-4 w-4 text-emerald-300" aria-hidden="true" />
-        ) : navigator.share ? (
+        ) : typeof navigator !== "undefined" && "share" in navigator ? (
           <Share2 className="h-4 w-4" aria-hidden="true" />
         ) : (
           <Link2 className="h-4 w-4" aria-hidden="true" />
@@ -235,7 +235,7 @@ function PostPage() {
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{post.excerpt}</p>
 
             {/* Author + share */}
-            <div className="mt-10 flex flex-wrap items-center justify-between gap-6 border-y border-white/10 py-5">
+            <div className="mt-10 flex flex-wrap items-center justify-between gap-6 border-y border-foreground/10 py-5">
               <div className="flex items-center gap-3">
                 <div
                   className={`flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br ${post.gradient} text-sm font-bold text-foreground`}
@@ -256,7 +256,7 @@ function PostPage() {
             initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: prefersReducedMotion ? 0 : 0.1 }}
-            className="relative mt-10 aspect-[16/9] overflow-hidden rounded-3xl border border-white/10"
+            className="relative mt-10 aspect-[16/9] overflow-hidden rounded-3xl border border-foreground/10"
             aria-hidden="true"
           >
             <div className={`absolute inset-0 bg-gradient-to-br ${post.gradient} opacity-90`} />
@@ -280,7 +280,7 @@ function PostPage() {
                   {block.heading && (
                     <h2
                       id={anchorId}
-                      className="mb-4 scroll-mt-24 text-2xl font-bold text-white md:text-3xl"
+                      className="mb-4 scroll-mt-24 text-2xl font-bold text-foreground md:text-3xl"
                     >
                       {block.heading}
                     </h2>
@@ -292,14 +292,14 @@ function PostPage() {
           </motion.div>
 
           {/* Tags */}
-          <div className="mt-12 flex flex-wrap items-center gap-2 border-t border-white/10 pt-8">
-            <span className="text-xs text-white/50">برچسب‌ها:</span>
+          <div className="mt-12 flex flex-wrap items-center gap-2 border-t border-foreground/10 pt-8">
+            <span className="text-xs text-foreground/50">برچسب‌ها:</span>
             {post.tags.map((tag) => (
               <Link
                 key={tag}
                 to="/blog"
                 search={{ tag }}
-                className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70 transition hover:border-white/20 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                className="rounded-full border border-foreground/10 bg-foreground/5 px-3 py-1 text-xs text-foreground/70 transition hover:border-foreground/20 hover:bg-foreground/10 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
               >
                 #{tag}
               </Link>
@@ -309,7 +309,7 @@ function PostPage() {
       </article>
 
       {/* Related */}
-      <section className="border-t border-white/5 px-6 py-20">
+      <section className="border-t border-foreground/5 px-6 py-20">
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 flex items-end justify-between">
             <h2 className="text-2xl font-bold md:text-3xl">مقالات مرتبط</h2>

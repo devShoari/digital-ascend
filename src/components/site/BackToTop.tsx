@@ -30,9 +30,9 @@ export function BackToTop() {
           transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
           onClick={scrollToTop}
           aria-label="بازگشت به بالا"
-          className="fixed bottom-6 cursor-pointer right-6 z-50 flex items-center gap-3 rounded-full border border-cyan-400/20 bg-slate-950/95 px-3 py-3 text-sm font-semibold text-white shadow-[0_32px_80px_-40px_rgba(56,189,248,0.8)] backdrop-blur-xl ring-1 ring-cyan-400/20 transition hover:-translate-y-0.5 hover:bg-slate-900/95"
+          className="fixed bottom-6 cursor-pointer right-6 z-50 flex items-center gap-3 rounded-full border border-border bg-background/90 px-3 py-3 text-sm font-semibold text-foreground shadow-[0_32px_80px_-40px_rgba(56,189,248,0.55)] backdrop-blur-xl ring-1 ring-cyan-400/20 transition hover:-translate-y-0.5 hover:bg-background"
         >
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-cyan-400 to-violet-500 text-slate-950 shadow-lg shadow-cyan-500/20">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-cyan-400 to-violet-500 text-primary-foreground shadow-lg shadow-cyan-500/20">
             <ArrowUp className="h-5 w-5" />
           </span>
         </motion.button>
