@@ -11,6 +11,10 @@ export type Project = {
   tech: string[];
   metrics: { k: string; v: string }[];
   gradient: string;
+
+  image: string;
+  url: string;
+
   client?: string;
   role?: string;
   duration?: string;
@@ -23,170 +27,117 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "nova-fintech",
-    name: "نوا فین‌تک",
-    tag: "Fintech · Web App",
+    slug: "iteller",
+    name: "iTeller",
+    tag: "FinTech · Crypto Exchange",
     category: "فین‌تک",
-    year: "۱۴۰۳",
-    problem: "تجربه پیچیده سرمایه‌گذاری و افت نرخ تبدیل در onboarding.",
-    solution: "بازطراحی کامل تجربه، خلاصه‌سازی فلوها و ساخت داشبورد بلادرنگ.",
-    tech: ["Next.js", "TypeScript", "PostgreSQL", "Redis"],
+    year: "۱۴۰۴",
+    problem:
+      "طراحی رابط کاربری سریع و مدرن برای یک پلتفرم خرید و فروش ارز دیجیتال با تمرکز بر تجربه کاربری، عملکرد و مقیاس‌پذیری.",
+    solution:
+      "توسعه فرانت‌اند با Next.js، طراحی سیستم کامپوننت، SSR، بهینه‌سازی عملکرد و پیاده‌سازی رابط کاملاً Responsive.",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "TanStack Query"],
     metrics: [
-      { k: "افزایش نرخ تبدیل", v: "۲٫۸×" },
-      { k: "کاهش زمان onboarding", v: "−۶۴٪" },
-      { k: "NPS", v: "+۴۲" },
+      { k: "SSR + SEO", v: "100%" },
+      { k: "کامپوننت‌های قابل استفاده مجدد", v: "60+" },
+      { k: "Responsive", v: "Responsive" },
     ],
-    gradient: "from-cyan-400 to-violet-500",
-    client: "نوا فین‌تک",
-    role: "طراحی محصول، مهندسی فرانت‌اند، معماری داده",
-    duration: "۵ ماه",
+    gradient: "from-electric/40 to-violet/40",
+    image: "/projects/iTeller.avif",
+    url: "https://www.iteller.io",
+
+    client: "iTeller",
+    role: "Front-end Developer",
+    duration: "چند ماه",
     overview:
-      "نوا یک پلتفرم سرمایه‌گذاری خرد است که می‌خواست تجربه‌ای شبیه اپلیکیشن‌های مصرفی مدرن به بازار ایران بیاورد. ما از صفر با تیم محصول همکاری کردیم تا onboarding، داشبورد و جریان معاملات را بازطراحی کنیم.",
-    challenges: [
-      "فرم ثبت‌نام ۱۱ مرحله‌ای با نرخ ریزش ۶۸٪",
-      "داشبورد کند با کوئری‌های سنگین SQL",
-      "نبود سیستم طراحی مشترک بین وب و موبایل",
-    ],
-    approach: [
-      {
-        title: "پژوهش و کشف",
-        body: "با ۲۲ کاربر مصاحبه کردیم و رفتار ۱۰ هزار سشن را با ابزارهای تحلیلی بررسی کردیم تا نقاط اصطکاک واقعی را پیدا کنیم.",
-      },
-      {
-        title: "طراحی و پروتوتایپ",
-        body: "onboarding را به ۴ مرحله رساندیم، فرم‌ها را با smart defaults ساده کردیم و پروتوتایپ را با ۱۲ کاربر واقعی تست کردیم.",
-      },
-      {
-        title: "مهندسی و اجرا",
-        body: "با Next.js و RSC، صفحات را سریع‌تر رندر کردیم و لایه کش Redis برای کوئری‌های سنگین اضافه کردیم.",
-      },
-    ],
+      "پیاده‌سازی رابط کاربری یک صرافی ارز دیجیتال با تمرکز بر عملکرد، سئو، معماری مقیاس‌پذیر و تجربه کاربری مدرن.",
     outcomes: [
-      "نرخ تبدیل onboarding از ۳۲٪ به ۹۰٪ رسید",
-      "زمان بارگذاری داشبورد از ۴٫۲s به ۰٫۸s کاهش یافت",
-      "NPS تیم محصول ۴۲ واحد افزایش داشت",
+      "طراحی سیستم کامپوننت قابل استفاده مجدد",
+      "پیاده‌سازی کامل صفحات Responsive",
+      "بهینه‌سازی عملکرد و SSR",
     ],
-    testimonial: {
-      quote:
-        "استودیو نه فقط یک تیم اجرایی، بلکه شریک استراتژیک ما بود. تصمیم‌های محصولی که با هم گرفتیم، مسیر شرکت را عوض کرد.",
-      author: "سارا رضایی",
-      role: "مدیر محصول، نوا فین‌تک",
-    },
   },
+
   {
-    slug: "stella-commerce",
-    name: "اِستلا کامرس",
-    tag: "E-commerce · Headless",
+    slug: "camel-coin",
+    name: "Camel Coin",
+    tag: "Web3 · Crypto Marketplace",
     category: "کامرس",
-    year: "۱۴۰۳",
-    problem: "کندی فروشگاه و افت سئو در صفحات محصول.",
-    solution: "مهاجرت به معماری headless، بهینه‌سازی Core Web Vitals و سئو فنی.",
-    tech: ["React", "Edge", "Cloudflare", "Algolia"],
+    year: "۱۴۰۴",
+    problem:
+      "ساخت یک پلتفرم Web3 برای خرید، فروش و مدیریت دارایی‌های دیجیتال با تجربه کاربری روان.",
+    solution:
+      "پیاده‌سازی رابط مدرن با اتصال کیف پول، تعامل با قراردادهای هوشمند و بهینه‌سازی صفحات برای عملکرد بالا.",
+    tech: ["Next.js", "TypeScript", "wagmi", "ethers.js", "Tailwind CSS"],
     metrics: [
-      { k: "LCP", v: "۰٫۹s" },
-      { k: "ترافیک ارگانیک", v: "+۲۱۰٪" },
-      { k: "درآمد ماهانه", v: "+۱٫۷×" },
+      { k: "Web3 Integration", v: "Wallet" },
+      { k: "Performance", v: "95+" },
+      { k: "Responsive", v: "100%" },
     ],
-    gradient: "from-emerald-400 to-cyan-500",
+    gradient: "from-cyan/40 to-electric/40",
+    image: "/projects/Camel.avif",
+    url: "https://camel-coin.vercel.app",
+
+    client: "Camel Coin",
+    role: "Front-end Developer",
+    duration: "چند ماه",
+    overview:
+      "پلتفرم Web3 برای خرید و فروش دارایی‌های دیجیتال با اتصال کیف پول و تعامل با قراردادهای هوشمند.",
+    outcomes: ["اتصال کیف پول کاربران", "پیاده‌سازی رابط مدرن Web3", "بهینه‌سازی عملکرد صفحات"],
   },
+
   {
-    slug: "atlas-ai",
-    name: "اَتلس AI",
-    tag: "SaaS · AI Platform",
-    category: "هوش مصنوعی",
-    year: "۱۴۰۳",
-    problem: "نیاز به دستیار هوشمند برای تیم‌های پشتیبانی با دانش داخلی.",
-    solution: "پلتفرم RAG با کنترل دقیق، evaluation و داشبورد مدیریت دانش.",
-    tech: ["Python", "FastAPI", "pgvector", "OpenAI"],
-    metrics: [
-      { k: "زمان پاسخ", v: "−۷۸٪" },
-      { k: "دقت پاسخ", v: "۹۴٪" },
-      { k: "صرفه‌جویی ماهانه", v: "۳۲۰h" },
-    ],
-    gradient: "from-violet-500 to-fuchsia-500",
-  },
-  {
-    slug: "orbit-saas",
-    name: "اوربیت اَنالیتیکس",
-    tag: "SaaS · Analytics",
+    slug: "pepe",
+    name: "Pepe",
+    tag: "Community Platform",
     category: "SaaS",
-    year: "۱۴۰۲",
-    problem: "داشبوردهای کند و پراکنده برای تیم‌های محصول.",
-    solution: "طراحی مجدد معماری داده، کوئری‌های استریمی و UI کاملاً کیبورد-محور.",
-    tech: ["Remix", "ClickHouse", "tRPC", "D3"],
+    year: "۱۴۰۳",
+    problem: "نیاز به یک وب‌سایت سریع، سئو محور و چندزبانه برای مدیریت محتوا و جامعه کاربران.",
+    solution:
+      "توسعه با Next.js App Router، SSR، سیستم چندزبانه، Dynamic Metadata، Sitemap و بهینه‌سازی Core Web Vitals.",
+    tech: ["Next.js", "TypeScript", "TanStack Query", "Tailwind CSS", "REST API"],
     metrics: [
-      { k: "زمان کوئری", v: "−۸۱٪" },
-      { k: "نرخ نگه‌داشت", v: "+۳۸٪" },
-      { k: "ARR", v: "+۲٫۲×" },
+      { k: "SEO", v: "Optimized" },
+      { k: "Multi-language", v: "FA / EN" },
+      { k: "SSR", v: "100%" },
     ],
-    gradient: "from-blue-500 to-indigo-500",
+    gradient: "from-violet/40 to-cyan/40",
+    image: "/projects/pepe.png",
+    url: "https://pepe.ir",
+
+    client: "Pepe",
+    role: "Front-end Developer",
+    duration: "چند ماه",
+    overview: "پلتفرم چندزبانه با تمرکز بر سئو، SSR، عملکرد بالا و معماری مدرن Next.js App Router.",
+    outcomes: ["پیاده‌سازی Dynamic Metadata", "سیستم چندزبانه", "بهینه‌سازی Core Web Vitals"],
   },
+
   {
-    slug: "mira-bank",
-    name: "میرا بانک",
-    tag: "Fintech · Mobile",
-    category: "فین‌تک",
-    year: "۱۴۰۲",
-    problem: "اپلیکیشن قدیمی با تجربه ناهماهنگ در iOS و Android.",
-    solution: "طراحی سیستم طراحی مشترک و بازنویسی با React Native و ماژول‌های بومی.",
-    tech: ["React Native", "Swift", "Kotlin", "Sentry"],
-    metrics: [
-      { k: "کرش‌ریت", v: "۰٫۰۲٪" },
-      { k: "امتیاز اپ استور", v: "۴٫۸" },
-      { k: "کاربر فعال روزانه", v: "+۱٫۹×" },
-    ],
-    gradient: "from-orange-400 to-pink-500",
-  },
-  {
-    slug: "kian-brand",
-    name: "بازآفرینی برند کیان",
-    tag: "Brand · Identity",
+    slug: "teller-tech",
+    name: "Teller Tech",
+    tag: "Corporate Website",
     category: "برند",
-    year: "۱۴۰۲",
-    problem: "هویت بصری قدیمی و ناهماهنگ در نقاط تماس دیجیتال و چاپی.",
-    solution: "استراتژی برند، سیستم بصری کامل و راهنمای صدای برند دو زبانه.",
-    tech: ["Figma", "After Effects", "Design Tokens"],
+    year: "۱۴۰۴",
+    problem: "طراحی وب‌سایت شرکتی مدرن برای معرفی خدمات، افزایش اعتبار برند و بهبود نرخ تبدیل.",
+    solution:
+      "طراحی UI/UX، پیاده‌سازی صفحات با Next.js، انیمیشن‌های نرم، بهینه‌سازی Lighthouse و رعایت اصول دسترس‌پذیری.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     metrics: [
-      { k: "یادآوری برند", v: "+۵۵٪" },
-      { k: "زمان تولید محتوا", v: "−۴۰٪" },
-      { k: "پوشش رسانه‌ای", v: "+۳×" },
+      { k: "Lighthouse", v: "95+" },
+      { k: "Accessibility", v: "AA" },
+      { k: "Performance", v: "Optimized" },
     ],
-    gradient: "from-rose-400 to-amber-400",
-  },
-  {
-    slug: "pulse-marketplace",
-    name: "پالس مارکت‌پلیس",
-    tag: "E-commerce · Marketplace",
-    category: "کامرس",
-    year: "۱۴۰۱",
-    problem: "مدیریت هزاران فروشنده با پنل‌های ناکارآمد.",
-    solution: "پنل چند‌مستأجری، سیستم پرداخت تفکیک‌شده و ابزارهای اتوماسیون.",
-    tech: ["Next.js", "NestJS", "PostgreSQL", "Stripe Connect"],
-    metrics: [
-      { k: "GMV سالانه", v: "+۲٫۴×" },
-      { k: "فروشندگان فعال", v: "+۱۸۰٪" },
-      { k: "تیکت پشتیبانی", v: "−۵۲٪" },
-    ],
-    gradient: "from-teal-400 to-blue-500",
-  },
-  {
-    slug: "vera-copilot",
-    name: "وِرا کوپایلوت",
-    tag: "AI · Productivity",
-    category: "هوش مصنوعی",
-    year: "۱۴۰۱",
-    problem: "تیم‌های حقوقی درگیر بازبینی دستی قراردادهای طولانی.",
-    solution: "کوپایلوت اختصاصی با ارزیابی ریسک و پیشنهاد بازنویسی بند به بند.",
-    tech: ["LangChain", "Postgres", "Next.js", "Vercel AI"],
-    metrics: [
-      { k: "زمان بازبینی", v: "−۷۰٪" },
-      { k: "دقت شناسایی ریسک", v: "۹۱٪" },
-      { k: "قرارداد در ماه", v: "×۴" },
-    ],
-    gradient: "from-fuchsia-500 to-purple-600",
+    gradient: "from-electric/40 to-cyan/40",
+    image: "/projects/iTeller-Tech.png",
+    url: "https://www.iteller.tech",
+
+    client: "Teller Tech",
+    role: "UI/UX Designer & Front-end Developer",
+    duration: "چند ماه",
+    overview: "طراحی و توسعه وب‌سایت شرکتی مدرن با تمرکز بر برندینگ، دسترس‌پذیری و عملکرد.",
+    outcomes: ["بهینه‌سازی Lighthouse", "طراحی Responsive", "انیمیشن‌های روان"],
   },
 ];
-
 export const categories: Category[] = ["همه", "فین‌تک", "کامرس", "SaaS", "هوش مصنوعی", "برند"];
 
 export function getProject(slug: string): Project | undefined {

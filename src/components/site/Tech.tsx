@@ -80,12 +80,6 @@ const techs: TechItem[] = [
     desc: "CDN، امنیت شبکه و پردازش در لبه (Edge).",
     category: "infra",
   },
-  {
-    name: "AWS",
-    icon: Server,
-    desc: "زیرساخت ابری مقیاس‌پذیر برای هر بار ترافیکی.",
-    category: "infra",
-  },
 ];
 
 const CATEGORY_STYLE: Record<Category, { border: string; bg: string; text: string; dot: string }> =

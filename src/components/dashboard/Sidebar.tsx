@@ -7,10 +7,13 @@ import {
   Bell,
   Settings,
   LogOut,
+  Inbox,
+  CalendarClock,
+  Wallet,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 
-const NAV = [
+const USER_NAV = [
   { to: "/dashboard", label: "داشبورد", icon: LayoutDashboard },
   { to: "/dashboard/profile", label: "پروفایل", icon: User },
   { to: "/dashboard/projects", label: "پروژه‌ها", icon: FolderKanban },
@@ -18,9 +21,20 @@ const NAV = [
   { to: "/dashboard/settings", label: "تنظیمات", icon: Settings },
 ] as const;
 
+const SPECIALIST_NAV = [
+  { to: "/dashboard", label: "داشبورد", icon: LayoutDashboard },
+  { to: "/dashboard/profile", label: "پروفایل", icon: User },
+  { to: "/dashboard/requests", label: "درخواست‌های مشتریان", icon: Inbox },
+  { to: "/dashboard/availability", label: "برنامه دسترس‌پذیری", icon: CalendarClock },
+  { to: "/dashboard/earnings", label: "درآمد", icon: Wallet },
+  { to: "/dashboard/notifications", label: "اعلان‌ها", icon: Bell },
+  { to: "/dashboard/settings", label: "تنظیمات", icon: Settings },
+] as const;
+
 export function Sidebar({ className = "" }: { className?: string }) {
   const { user, logout } = useAuth();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const NAV = user?.accountType === "specialist" ? SPECIALIST_NAV : USER_NAV;
 
   return (
     <aside className={`flex h-full flex-col justify-between p-4 ${className}`}>
@@ -68,7 +82,14 @@ export function Sidebar({ className = "" }: { className?: string }) {
             {user?.name?.slice(0, 2) ?? "کا"}
           </div>
           <div className="min-w-0">
-            <div className="truncate text-sm font-semibold">{user?.name ?? "کاربر"}</div>
+            <div className="flex items-center gap-1.5">
+              <span className="truncate text-sm font-semibold">{user?.name ?? "کاربر"}</span>
+              {user?.accountType === "specialist" && (
+                <span className="shrink-0 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-1.5 py-0.5 text-[9px] font-bold text-white">
+                  متخصص
+                </span>
+              )}
+            </div>
             <div className="truncate text-xs text-muted-foreground">{user?.title}</div>
           </div>
         </div>

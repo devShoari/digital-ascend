@@ -284,7 +284,7 @@ export function FinalCTA() {
             <ArrowLeft className="relative size-4" />
           </MagneticLink>
           <MagneticLink
-            href="#projects"
+            href="/projects"
             className="inline-flex items-center gap-2 rounded-full glass px-8 py-4 text-base font-semibold transition-colors hover:bg-foreground/10"
           >
             مشاهده پروژه‌ها
@@ -304,17 +304,6 @@ export function FinalCTA() {
           />
         ))}
       </div>
-
-      <style>{`
-        @keyframes ring-pulse {
-          0% { transform: scale(0.82); opacity: 0.4; }
-          100% { transform: scale(1.55); opacity: 0; }
-        }
-        .ring-pulse {
-          border: 1px solid rgba(122, 165, 255, 0.35);
-          animation: ring-pulse 3.9s ease-out infinite;
-        }
-      `}</style>
     </section>
   );
 }

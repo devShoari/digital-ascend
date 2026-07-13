@@ -8,12 +8,10 @@ import { ThemeToggle } from "@/components/site/ThemeToggle";
 
 const links = [
   { href: "/#services", label: "خدمات" },
-  { href: "/#process", label: "فرآیند" },
   { href: "/projects", label: "پروژه‌ها" },
   { href: "/experts", label: "متخصصین ما" },
   { href: "/about", label: "درباره" },
-  { href: "/#tech", label: "تکنولوژی" },
-  { href: "/#education", label: "آموزش" },
+  { href: "/learn", label: "آموزش" },
   { href: "/blog", label: "بلاگ" },
 ];
 
@@ -65,7 +63,7 @@ export function Nav() {
 
         {/* Desktop Navigation */}
         <NavigationMenu.Root className="hidden md:block">
-          <NavigationMenu.List className="flex items-center gap-1 rounded-full bg-foreground/[0.06] p-1">
+          <NavigationMenu.List className="flex flex-row-reverse items-center gap-1 rounded-full bg-foreground/[0.06] p-1">
             {links.map((item) => (
               <NavigationMenu.Item key={item.href}>
                 <NavigationMenu.Link asChild>
@@ -86,7 +84,9 @@ export function Nav() {
                       whileHover={{ y: -1 }}
                       whileTap={{ scale: 0.95 }}
                       className={`relative block rounded-full px-5 py-2.5 text-sm transition-colors ${
-                        active === item.href ? "text-foreground" : "text-foreground/60 hover:text-foreground"
+                        active === item.href
+                          ? "text-foreground"
+                          : "text-foreground/60 hover:text-foreground"
                       }`}
                     >
                       {item.label}

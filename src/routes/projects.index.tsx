@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { useMemo, useState } from "react";
-import { ArrowLeft, Search, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Search, Sparkles } from "lucide-react";
 
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
@@ -45,7 +45,10 @@ function ProjectsPage() {
   }, [category, q]);
 
   return (
-    <main dir="rtl" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
+    <main
+      dir="rtl"
+      className="relative min-h-screen overflow-x-hidden bg-background text-foreground"
+    >
       <Nav />
 
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[80vh]">
@@ -89,7 +92,7 @@ function ProjectsPage() {
           </motion.p>
         </div>
 
-        <div className="mx-auto mt-12 max-w-4xl">
+        {/* <div className="mx-auto mt-12 max-w-4xl">
           <div className="relative">
             <Search className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
             <input
@@ -115,7 +118,7 @@ function ProjectsPage() {
               </button>
             ))}
           </div>
-        </div>
+        </div> */}
       </section>
 
       <section className="px-6 pb-32">
@@ -139,11 +142,34 @@ function ProjectsPage() {
                     params={{ slug: p.slug }}
                     className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-background/60 backdrop-blur-xl transition hover:border-foreground/20"
                   >
-                    <div className="relative aspect-[5/3] overflow-hidden">
-                      <div className={`absolute inset-0 bg-gradient-to-br ${p.gradient}`} />
+                    <div className="relative  overflow-hidden">
+                      {/* Image */}
+                      <div className="relative h-64 overflow-hidden">
+                        <div className="relative h-64 w-full rounded-t-lg overflow-hidden">
+                          <img
+                            src={p.image}
+                            alt={p.name}
+                            width={600}
+                            height={400}
+                            className="object-contain w-full animate-image-scroll "
+                          />
+                        </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+
+                        {/* Hover Overlay */}
+                        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/60 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100">
+                          <div className="translate-y-4 scale-90 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur-xl transition-all duration-300 group-hover:translate-y-0 group-hover:scale-100">
+                            <span className="flex items-center gap-2">
+                              Visit Project
+                              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
                       <div className="absolute inset-0 grid-bg opacity-40" />
-                      <div className="absolute inset-0 flex items-end p-6">
-                        <div>
+                      <div className="absolute inset-0 flex justify-end items-end p-6">
+                        <div className="text-left">
                           <div className="text-[10px] uppercase tracking-[0.3em] text-white/80">
                             {p.tag}
                           </div>
@@ -191,11 +217,6 @@ function ProjectsPage() {
                           </span>
                         ))}
                       </div>
-
-                      <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-foreground/90 transition group-hover:text-foreground">
-                        مشاهده مطالعه موردی
-                        <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                      </span>
                     </div>
                   </Link>
                 </motion.div>

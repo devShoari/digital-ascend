@@ -1,5 +1,13 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import type { User } from "./mock/types";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
+import type { AccountType, User } from "./mock/types";
 import { loginRequest, registerRequest } from "./mock/auth-api";
 
 const SESSION_KEY = "mohtawa.mock-session";
@@ -8,7 +16,13 @@ type AuthContextValue = {
   user: User | null;
   status: "loading" | "authenticated" | "unauthenticated";
   login: (email: string, password: string) => Promise<{ ok: boolean; error?: string }>;
-  register: (input: { name: string; email: string; password: string }) => Promise<{ ok: boolean; error?: string }>;
+  register: (input: {
+    name: string;
+    email: string;
+    password: string;
+    accountType: AccountType;
+    specialty?: string;
+  }) => Promise<{ ok: boolean; error?: string }>;
   logout: () => void;
   updateUser: (patch: Partial<User>) => void;
 };
@@ -38,27 +52,33 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     else window.localStorage.removeItem(SESSION_KEY);
   }, []);
 
-  const login = useCallback<AuthContextValue["login"]>(async (email, password) => {
-    const result = await loginRequest(email, password);
-    if (result.ok) {
-      setUser(result.user);
-      setStatus("authenticated");
-      persist(result.user);
-      return { ok: true };
-    }
-    return { ok: false, error: result.error };
-  }, [persist]);
+  const login = useCallback<AuthContextValue["login"]>(
+    async (email, password) => {
+      const result = await loginRequest(email, password);
+      if (result.ok) {
+        setUser(result.user);
+        setStatus("authenticated");
+        persist(result.user);
+        return { ok: true };
+      }
+      return { ok: false, error: result.error };
+    },
+    [persist],
+  );
 
-  const register = useCallback<AuthContextValue["register"]>(async (input) => {
-    const result = await registerRequest(input);
-    if (result.ok) {
-      setUser(result.user);
-      setStatus("authenticated");
-      persist(result.user);
-      return { ok: true };
-    }
-    return { ok: false, error: result.error };
-  }, [persist]);
+  const register = useCallback<AuthContextValue["register"]>(
+    async (input) => {
+      const result = await registerRequest(input);
+      if (result.ok) {
+        setUser(result.user);
+        setStatus("authenticated");
+        persist(result.user);
+        return { ok: true };
+      }
+      return { ok: false, error: result.error };
+    },
+    [persist],
+  );
 
   const logout = useCallback(() => {
     setUser(null);
@@ -66,14 +86,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     persist(null);
   }, [persist]);
 
-  const updateUser = useCallback((patch: Partial<User>) => {
-    setUser((prev) => {
-      if (!prev) return prev;
-      const next = { ...prev, ...patch };
-      persist(next);
-      return next;
-    });
-  }, [persist]);
+  const updateUser = useCallback(
+    (patch: Partial<User>) => {
+      setUser((prev) => {
+        if (!prev) return prev;
+        const next = { ...prev, ...patch };
+        persist(next);
+        return next;
+      });
+    },
+    [persist],
+  );
 
   const value = useMemo(
     () => ({ user, status, login, register, logout, updateUser }),

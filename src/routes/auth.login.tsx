@@ -7,12 +7,14 @@ import { toast } from "sonner";
 import { AuthLayout } from "@/components/auth/AuthLayout";
 import { PasswordInput } from "@/components/auth/PasswordInput";
 import { SocialButtons } from "@/components/auth/SocialButtons";
+import { RoleToggle } from "@/components/auth/RoleToggle";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/auth-context";
 import { DEMO_CREDENTIALS } from "@/lib/mock/auth-api";
+import type { AccountType } from "@/lib/mock/types";
 
 export const Route = createFileRoute("/auth/login")({
   head: () => ({ meta: [{ title: "ورود — محتوا" }] }),
@@ -23,6 +25,7 @@ function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  const [role, setRole] = useState<AccountType>("user");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
@@ -53,8 +56,8 @@ function LoginPage() {
   };
 
   const fillDemo = () => {
-    setEmail(DEMO_CREDENTIALS.email);
-    setPassword(DEMO_CREDENTIALS.password);
+    setEmail(DEMO_CREDENTIALS[role].email);
+    setPassword(DEMO_CREDENTIALS[role].password);
     setErrors({});
   };
 
@@ -72,6 +75,8 @@ function LoginPage() {
       }
     >
       <form onSubmit={handleSubmit} noValidate className="space-y-5">
+        <RoleToggle value={role} onChange={setRole} />
+
         {errors.form && (
           <motion.div
             initial={{ opacity: 0, y: -6 }}
@@ -104,7 +109,10 @@ function LoginPage() {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <Label htmlFor="password">رمز عبور</Label>
-            <Link to="/auth/forgot-password" className="text-xs text-muted-foreground hover:text-foreground">
+            <Link
+              to="/auth/forgot-password"
+              className="text-xs text-muted-foreground hover:text-foreground"
+            >
               فراموشی رمز عبور؟
             </Link>
           </div>
@@ -137,7 +145,8 @@ function LoginPage() {
           onClick={fillDemo}
           className="w-full text-center text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
         >
-          استفاده از حساب دمو ({DEMO_CREDENTIALS.email})
+          استفاده از حساب دمو {role === "specialist" ? "متخصص" : "کاربر"} (
+          {DEMO_CREDENTIALS[role].email})
         </button>
 
         <div className="relative py-2 text-center text-xs text-muted-foreground">

@@ -35,7 +35,7 @@ function Index() {
       <WhyUs />
       <Tech />
       <Stats />
-      <Education />
+      {/* <Education /> */}
       <FinalCTA />
       <Footer />
     </main>

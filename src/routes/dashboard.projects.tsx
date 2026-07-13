@@ -6,12 +6,14 @@ import { mockProjects, projectStatusOptions } from "@/lib/mock/projects";
 import { ProjectCard } from "@/components/dashboard/ProjectCard";
 import { EmptyState } from "@/components/dashboard/EmptyState";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useRoleGuard } from "@/lib/use-role-guard";
 
 export const Route = createFileRoute("/dashboard/projects")({
   component: ProjectsPage,
 });
 
 function ProjectsPage() {
+  useRoleGuard("user");
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState<(typeof projectStatusOptions)[number]>("همه");

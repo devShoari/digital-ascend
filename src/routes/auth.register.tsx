@@ -7,11 +7,13 @@ import { toast } from "sonner";
 import { AuthLayout } from "@/components/auth/AuthLayout";
 import { PasswordInput } from "@/components/auth/PasswordInput";
 import { SocialButtons } from "@/components/auth/SocialButtons";
+import { RoleToggle } from "@/components/auth/RoleToggle";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/auth-context";
+import type { AccountType } from "@/lib/mock/types";
 
 export const Route = createFileRoute("/auth/register")({
   head: () => ({ meta: [{ title: "ثبت‌نام — محتوا" }] }),
@@ -30,9 +32,11 @@ function RegisterPage() {
   const { register } = useAuth();
   const navigate = useNavigate();
 
+  const [role, setRole] = useState<AccountType>("user");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [specialty, setSpecialty] = useState("");
   const [agree, setAgree] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [state, setState] = useState<"idle" | "loading" | "success">("idle");
@@ -45,6 +49,8 @@ function RegisterPage() {
     if (name.trim().length < 2) next.name = "نام و نام خانوادگی را وارد کنید.";
     if (!/^\S+@\S+\.\S+$/.test(email)) next.email = "ایمیل معتبر وارد کنید.";
     if (!passwordValid) next.password = "رمز عبور شرایط لازم را ندارد.";
+    if (role === "specialist" && specialty.trim().length < 2)
+      next.specialty = "حوزه تخصص را وارد کنید.";
     if (!agree) next.agree = "برای ادامه باید قوانین را بپذیرید.";
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -54,7 +60,7 @@ function RegisterPage() {
     e.preventDefault();
     if (!validate()) return;
     setState("loading");
-    const result = await register({ name, email, password });
+    const result = await register({ name, email, password, accountType: role, specialty });
     if (result.ok) {
       setState("success");
       toast.success("حساب کاربری با موفقیت ساخته شد");
@@ -79,6 +85,8 @@ function RegisterPage() {
       }
     >
       <form onSubmit={handleSubmit} noValidate className="space-y-5">
+        <RoleToggle value={role} onChange={setRole} />
+
         {errors.form && (
           <motion.div
             initial={{ opacity: 0, y: -6 }}
@@ -125,6 +133,24 @@ function RegisterPage() {
           {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
         </div>
 
+        {role === "specialist" && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            className="space-y-2 overflow-hidden"
+          >
+            <Label htmlFor="specialty">حوزه تخصص</Label>
+            <Input
+              id="specialty"
+              placeholder="مثلاً: توسعه فرانت‌اند، طراحی UI/UX، سئو تکنیکال…"
+              value={specialty}
+              onChange={(e) => setSpecialty(e.target.value)}
+              aria-invalid={!!errors.specialty}
+            />
+            {errors.specialty && <p className="text-xs text-destructive">{errors.specialty}</p>}
+          </motion.div>
+        )}
+
         <div className="space-y-2">
           <Label htmlFor="password">رمز عبور</Label>
           <PasswordInput
@@ -153,8 +179,16 @@ function RegisterPage() {
 
         <div className="space-y-1">
           <div className="flex items-start gap-2">
-            <Checkbox id="agree" checked={agree} onCheckedChange={(c) => setAgree(!!c)} className="mt-0.5" />
-            <Label htmlFor="agree" className="cursor-pointer font-normal leading-6 text-muted-foreground">
+            <Checkbox
+              id="agree"
+              checked={agree}
+              onCheckedChange={(c) => setAgree(!!c)}
+              className="mt-0.5"
+            />
+            <Label
+              htmlFor="agree"
+              className="cursor-pointer font-normal leading-6 text-muted-foreground"
+            >
               با <a className="text-foreground hover:underline">قوانین و مقررات</a> و{" "}
               <a className="text-foreground hover:underline">حریم خصوصی</a> موافقم.
             </Label>
@@ -165,7 +199,11 @@ function RegisterPage() {
         <Button type="submit" className="w-full" size="lg" disabled={state !== "idle"}>
           {state === "loading" && <Loader2 className="h-4 w-4 animate-spin" />}
           {state === "success" && <CheckCircle2 className="h-4 w-4" />}
-          {state === "loading" ? "در حال ساخت حساب…" : state === "success" ? "ساخته شد!" : "ساخت حساب کاربری"}
+          {state === "loading"
+            ? "در حال ساخت حساب…"
+            : state === "success"
+              ? "ساخته شد!"
+              : "ساخت حساب کاربری"}
         </Button>
 
         <div className="relative py-2 text-center text-xs text-muted-foreground">

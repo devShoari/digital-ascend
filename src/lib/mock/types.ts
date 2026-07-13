@@ -3,12 +3,15 @@
 // mock functions in `auth-api.ts` / `*.ts` for real fetch calls later
 // should not require touching any component.
 
+export type AccountType = "user" | "specialist";
+
 export type User = {
   id: string;
   name: string;
   email: string;
   avatarUrl?: string;
-  role: "مدیر" | "عضو تیم" | "مشتری";
+  accountType: AccountType;
+  role: "مدیر" | "عضو تیم" | "مشتری" | "متخصص مستقل";
   title: string;
   phone?: string;
   location?: string;
@@ -16,6 +19,13 @@ export type User = {
   skills: string[];
   joinedAt: string; // ISO date
   emailVerified: boolean;
+  // Specialist-only fields (present when accountType === "specialist")
+  specialty?: string;
+  rating?: number;
+  reviewsCount?: number;
+  hourlyRate?: number;
+  completedJobs?: number;
+  availableForWork?: boolean;
 };
 
 export type ProjectStatus = "در حال انجام" | "در انتظار بازبینی" | "تکمیل‌شده" | "متوقف‌شده";
@@ -53,6 +63,40 @@ export type Activity = {
   createdAt: string; // ISO date
 };
 
-export type AuthResult =
-  | { ok: true; user: User }
-  | { ok: false; error: string };
+export type AuthResult = { ok: true; user: User } | { ok: false; error: string };
+
+// ---------- Specialist-only dashboard data ----------
+
+export type RequestStatus = "در انتظار پاسخ" | "پذیرفته‌شده" | "رد شده";
+
+export type ClientRequest = {
+  id: string;
+  clientName: string;
+  clientInitials: string;
+  service: string;
+  message: string;
+  budget: string;
+  status: RequestStatus;
+  createdAt: string; // ISO date
+};
+
+export type DayAvailability = {
+  day: "شنبه" | "یکشنبه" | "دوشنبه" | "سه‌شنبه" | "چهارشنبه" | "پنجشنبه" | "جمعه";
+  enabled: boolean;
+  from: string; // "09:00"
+  to: string; // "17:00"
+};
+
+export type EarningsSummary = {
+  totalEarned: number; // تومان
+  pendingPayout: number;
+  thisMonth: number;
+  monthlyTrend: { month: string; amount: number }[];
+  recentPayouts: {
+    id: string;
+    project: string;
+    amount: number;
+    date: string;
+    status: "پرداخت‌شده" | "در انتظار";
+  }[];
+};

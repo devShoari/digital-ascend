@@ -1,9 +1,8 @@
-@import "tailwindcss" source(none);
+@import "tailwindcss";
 @source "../src";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -82,9 +81,9 @@
   --ring: oklch(0.55 0.22 260 / 0.5);
 
   /* brand accents */
-  --electric: oklch(0.72 0.22 255);   /* electric blue */
-  --violet: oklch(0.7 0.24 295);      /* purple */
-  --cyan: oklch(0.85 0.16 200);       /* soft cyan */
+  --electric: oklch(0.72 0.22 255); /* electric blue */
+  --violet: oklch(0.7 0.24 295); /* purple */
+  --cyan: oklch(0.85 0.16 200); /* soft cyan */
 
   --aurora-1: oklch(0.75 0.18 255 / 0.35);
   --aurora-2: oklch(0.75 0.2 295 / 0.3);
@@ -92,18 +91,14 @@
 
   /* gradients & shadows */
   --gradient-brand: linear-gradient(135deg, var(--electric), var(--violet));
-  --gradient-aurora: radial-gradient(
-      60% 60% at 20% 10%,
-      var(--aurora-1) 0%,
-      transparent 60%
-    ),
+  --gradient-aurora:
+    radial-gradient(60% 60% at 20% 10%, var(--aurora-1) 0%, transparent 60%),
     radial-gradient(50% 60% at 80% 0%, var(--aurora-2) 0%, transparent 60%),
     radial-gradient(60% 70% at 50% 100%, var(--aurora-3) 0%, transparent 60%);
 
-  --shadow-glow: 0 0 40px -10px oklch(0.7 0.21 260 / 0.55),
-    0 0 80px -20px oklch(0.7 0.24 295 / 0.35);
-  --shadow-elevated: 0 20px 60px -20px oklch(0 0 0 / 0.6),
-    0 8px 24px -12px oklch(0 0 0 / 0.5);
+  --shadow-glow:
+    0 0 40px -10px oklch(0.7 0.21 260 / 0.55), 0 0 80px -20px oklch(0.7 0.24 295 / 0.35);
+  --shadow-elevated: 0 20px 60px -20px oklch(0 0 0 / 0.6), 0 8px 24px -12px oklch(0 0 0 / 0.5);
 }
 
 .dark {
@@ -160,16 +155,8 @@
 
   body {
     background-image:
-      radial-gradient(
-        ellipse 80% 50% at 50% -10%,
-        oklch(0.7 0.21 260 / 0.18),
-        transparent 60%
-      ),
-      radial-gradient(
-        ellipse 60% 50% at 100% 20%,
-        oklch(0.7 0.24 295 / 0.12),
-        transparent 60%
-      );
+      radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.7 0.21 260 / 0.18), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 100% 20%, oklch(0.7 0.24 295 / 0.12), transparent 60%);
     background-attachment: fixed;
   }
 
@@ -211,7 +198,12 @@
 }
 
 @utility gradient-text {
-  background: linear-gradient(135deg, var(--foreground) 0%, oklch(0.55 0.24 260) 55%, oklch(0.58 0.26 295) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--foreground) 0%,
+    oklch(0.55 0.24 260) 55%,
+    oklch(0.58 0.26 295) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -236,8 +228,16 @@
 
 @utility grid-bg {
   background-image:
-    linear-gradient(to right, color-mix(in oklch, var(--foreground) 8%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklch, var(--foreground) 8%, transparent) 1px, transparent 1px);
+    linear-gradient(
+      to right,
+      color-mix(in oklch, var(--foreground) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--foreground) 8%, transparent) 1px,
+      transparent 1px
+    );
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%);
 }
@@ -247,41 +247,110 @@
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
 }
 
 @keyframes orbit {
-  from { transform: rotate(0deg) translateX(var(--r, 120px)) rotate(0deg); }
-  to { transform: rotate(360deg) translateX(var(--r, 120px)) rotate(-360deg); }
+  from {
+    transform: rotate(0deg) translateX(var(--r, 120px)) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(var(--r, 120px)) rotate(-360deg);
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 @keyframes blur-reveal {
-  from { opacity: 0; filter: blur(16px); transform: translateY(20px); }
-  to { opacity: 1; filter: blur(0); transform: translateY(0); }
+  from {
+    opacity: 0;
+    filter: blur(16px);
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
 }
 
-@utility animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
-@utility animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
-@utility animate-blur-reveal { animation: blur-reveal 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@utility animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+@utility animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+@utility animate-blur-reveal {
+  animation: blur-reveal 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
 
 /* scrollbar */
 @layer base {
-  ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
   ::-webkit-scrollbar-thumb {
     background: oklch(1 0 0 / 0.08);
     border-radius: 999px;
   }
-  ::-webkit-scrollbar-thumb:hover { background: oklch(1 0 0 / 0.16); }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(1 0 0 / 0.16);
+  }
+}
+
+.animate-image-scroll {
+  animation: image-scroll 7s ease-in-out infinite alternate;
+}
+
+@keyframes image-scroll {
+  0% {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% + 200px));
+  }
+}
+
+@keyframes ring-pulse {
+  0% {
+    transform: scale(0.82);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+.ring-pulse {
+  border: 1px solid rgba(122, 165, 255, 0.35);
+  animation: ring-pulse 3.9s ease-out infinite;
 }

@@ -1,22 +1,81 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { SectionHead } from "./Process";
-import { Brain, Cloud, Code2, Database, Layers, Palette, Search, Zap } from "lucide-react";
+import { Code2, Database, Palette, Search, ShieldCheck } from "lucide-react";
 
 const services = [
-  { id: "ux", icon: Palette, t: "UI / UX", d: "طراحی محصول با تمرکز روی نتیجه — از پژوهش کاربر تا سیستم طراحی منسجم.", points: ["پژوهش کاربر و تست تجربه", "Wireframe و پروتوتایپ تعاملی", "سیستم طراحی مقیاس‌پذیر", "همکاری مستقیم با تیم توسعه"] },
-  { id: "fe", icon: Code2, t: "Frontend", d: "رابط‌های پرسرعت، در دسترس و فوق‌العاده تعاملی روی استک‌های مدرن.", points: ["React / Next.js / TypeScript", "انیمیشن سطح بالا با Motion / GSAP", "دسترسی‌پذیری و عملکرد", "هم‌راستا با سیستم طراحی"] },
-  { id: "be", icon: Database, t: "Backend", d: "معماری قابل اتکا و آماده برای مقیاس از روز اول.", points: ["Node, Python, PostgreSQL, Redis", "API های REST و GraphQL", "Event-driven و صف‌ها", "تست، مشاهده‌پذیری، CI/CD"] },
-  { id: "seo", icon: Search, t: "SEO", d: "سئوی فنی و محتوایی برای رشد ارگانیک پایدار.", points: ["ممیزی فنی و Core Web Vitals", "استراتژی محتوا و کلیدواژه", "ساختاردهی و schema", "گزارش‌دهی شفاف"] },
-  { id: "ai", icon: Brain, t: "AI", d: "ادغام هوشمندی واقعی در محصول — نه فقط دموی LLM.", points: ["RAG و agent ها", "ادغام مدل‌های متن، صوت و تصویر", "خط‌لوله داده و evaluation", "هزینه و امنیت بهینه"] },
-  { id: "cloud", icon: Cloud, t: "Cloud", d: "زیرساخت ابری حرفه‌ای روی AWS و Cloudflare.", points: ["معماری چندناحیه", "Edge و serverless", "امنیت و IAM", "هزینه‌سازی هوشمند"] },
-  { id: "infra", icon: Layers, t: "Infrastructure", d: "DevOps، رصد و قابلیت اطمینان به سبک شرکت‌های بزرگ.", points: ["Kubernetes و Docker", "CI/CD کامل", "Observability و SLO", "بازیابی فاجعه"] },
-  { id: "auto", icon: Zap, t: "Automation", d: "اتوماسیون فرآیندها و گردش‌کار داخلی برای صرفه‌جویی واقعی.", points: ["یکپارچه‌سازی سیستم‌ها", "اتوماسیون داده و گزارش‌گیری", "ابزار داخلی و دشبورد", "Workflow های هوشمند"] },
+  {
+    id: "ux",
+    icon: Palette,
+    t: "UI / UX Design",
+    d: "طراحی تجربه‌های کاربری مدرن، کاربردی و داده‌محور از ایده تا محصول نهایی.",
+    points: [
+      "UX Research & User Flow",
+      "Wireframe & Interactive Prototype",
+      "Design System & Component Library",
+      "Developer Handoff & Design QA",
+    ],
+  },
+  {
+    id: "fe",
+    icon: Code2,
+    t: "Frontend Development",
+    d: "توسعه رابط‌های کاربری سریع، واکنش‌گرا و بهینه با جدیدترین تکنولوژی‌های وب.",
+    points: [
+      "React, Next.js & TypeScript",
+      "Tailwind CSS & Modern UI",
+      "SSR, Performance & Accessibility",
+      "Advanced Animations (Motion / GSAP)",
+    ],
+  },
+  {
+    id: "be",
+    icon: Database,
+    t: "Backend Development",
+    d: "طراحی و پیاده‌سازی APIها و زیرساخت‌های مقیاس‌پذیر با تمرکز بر امنیت و عملکرد.",
+    points: [
+      "Node.js & Python",
+      "REST API & Authentication",
+      "PostgreSQL, Redis & Caching",
+      "Docker, CI/CD & Monitoring",
+    ],
+  },
+  {
+    id: "security",
+    icon: ShieldCheck,
+    t: "Application Security",
+    d: "افزایش امنیت برنامه‌های تحت وب بر اساس استانداردهای OWASP و مفاهیم SANS SEC542.",
+    points: [
+      "Web Application Security Review",
+      "OWASP Top 10 Assessment",
+      "Secure Coding Best Practices",
+      "SANS SEC542 Methodology",
+    ],
+  },
+  {
+    id: "seo",
+    icon: Search,
+    t: "Technical SEO",
+    d: "بهینه‌سازی فنی و محتوایی برای افزایش دیده‌شدن، سرعت و رشد ارگانیک.",
+    points: [
+      "Technical SEO Audit",
+      "Core Web Vitals Optimization",
+      "Structured Data & Schema",
+      "Content Strategy & Analytics",
+    ],
+  },
 ];
 
 export function Services() {
-  const [active, setActive] = useState(services[0].id);
-  const cur = services.find((s) => s.id === active)!;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const cur = services[activeIndex];
+
+  const goToService = (index: number) => {
+    setActiveIndex(index);
+  };
+
   return (
     <section id="services" className="relative py-32">
       <div className="mx-auto max-w-7xl px-6">
@@ -26,16 +85,17 @@ export function Services() {
           subtitle="تیمی منسجم از طراح، توسعه‌دهنده، مهندس داده و متخصص رشد — کنار شما در تمام طول مسیر."
         />
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-[280px_1fr]">
+        <div dir="ltr" className="mt-16 grid gap-6 lg:grid-cols-[280px_1fr]">
           {/* sidebar */}
-          <ul className="glass rounded-2xl p-2">
-            {services.map((s) => {
+          <ul className="glass h-fit rounded-2xl p-2">
+            {services.map((s, index) => {
               const Icon = s.icon;
-              const isActive = active === s.id;
+              const isActive = activeIndex === index;
+
               return (
                 <li key={s.id}>
                   <button
-                    onClick={() => setActive(s.id)}
+                    onClick={() => goToService(index)}
                     className={`relative flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors ${
                       isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                     }`}
@@ -47,7 +107,9 @@ export function Services() {
                         transition={{ type: "spring", stiffness: 350, damping: 30 }}
                       />
                     )}
-                    <span className={`relative flex size-8 items-center justify-center rounded-lg ${isActive ? "gradient-brand text-primary-foreground" : "glass"}`}>
+                    <span
+                      className={`relative flex size-8 items-center justify-center rounded-lg ${isActive ? "gradient-brand text-primary-foreground" : "glass"}`}
+                    >
                       <Icon className="size-4" />
                     </span>
                     <span className="relative">{s.t}</span>
@@ -58,8 +120,37 @@ export function Services() {
           </ul>
 
           {/* panel */}
-          <div className="glass-strong relative min-h-[420px] overflow-hidden rounded-3xl p-8 md:p-12">
-            <div className="pointer-events-none absolute -inset-x-10 -top-20 h-60 bg-gradient-to-b from-electric/15 to-transparent blur-2xl" />
+          <div
+            className="glass-strong relative min-h-105 overflow-hidden rounded-3xl p-8 md:p-12"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <div className="pointer-events-none absolute -inset-x-10 -top-20 h-60 bg-linear-to-b from-electric/15 to-transparent blur-2xl" />
+            <div className="mb-6 flex items-center gap-3">
+              <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-foreground/10">
+                <motion.div
+                  key={activeIndex}
+                  className="h-full rounded-full gradient-brand"
+                  initial={{ width: "0%" }}
+                  animate={{
+                    width: isHovered ? undefined : "100%",
+                  }}
+                  transition={{
+                    duration: 4,
+                    ease: "linear",
+                  }}
+                  onAnimationComplete={() => {
+                    if (!isHovered) {
+                      setActiveIndex((prev) => (prev === services.length - 1 ? 0 : prev + 1));
+                    }
+                  }}
+                />
+              </div>
+
+              <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                auto
+              </span>
+            </div>
             <AnimatePresence mode="wait">
               <motion.div
                 key={cur.id}
@@ -68,9 +159,18 @@ export function Services() {
                 exit={{ opacity: 0, y: -12, filter: "blur(6px)" }}
                 transition={{ duration: 0.4 }}
               >
-                <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">سرویس</div>
-                <h3 className="mt-2 font-display text-4xl font-bold md:text-5xl">{cur.t}</h3>
-                <p className="mt-4 max-w-2xl text-muted-foreground leading-8 md:text-lg">{cur.d}</p>
+                <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                  سرویس
+                </div>
+                <h3 className="mt-2 text-center w-full font-display text-4xl font-bold md:text-5xl">
+                  {cur.t}
+                </h3>
+                <p
+                  dir="rtl"
+                  className="mt-4 text-center w-full text-muted-foreground leading-8 md:text-lg"
+                >
+                  {cur.d}
+                </p>
                 <ul className="mt-8 grid gap-3 sm:grid-cols-2">
                   {cur.points.map((p) => (
                     <li key={p} className="flex items-start gap-3 rounded-xl glass p-3.5 text-sm">
