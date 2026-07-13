@@ -79,14 +79,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "مرکز توسعه وب ایران | طراحی و توسعه محصولات دیجیتال" },
+      {
+        name: "description",
+        content:
+          "مرکز توسعه وب ایران؛ تیم تخصصی طراحی و توسعه وب‌سایت، اپلیکیشن و محصولات دیجیتال با تمرکز بر تجربه کاربری، کیفیت و رشد کسب‌وکارها.",
+      },
+      { name: "author", content: "مرکز توسعه وب ایران" },
+      {
+        property: "og:title",
+        content: "مرکز توسعه وب ایران | توسعه محصولات دیجیتال",
+      },
+      {
+        property: "og:description",
+        content: "طراحی، توسعه و مدیریت محصولات دیجیتال توسط تیم متخصص مرکز توسعه وب ایران.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "مرکز توسعه وب ایران" },
+      {
+        name: "twitter:description",
+        content: "تیم توسعه محصول دیجیتال برای ساخت وب‌سایت‌ها و اپلیکیشن‌های مدرن.",
+      },
     ],
     links: [
       {
